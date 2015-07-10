@@ -49,7 +49,7 @@ public class FragmentHome extends Fragment {
                 listFragments.add(FragmentListProducts.newInstance(list.get(i).getId(), list.get(i).getTitre()));
             }
         } else {
-            listFragments.add(FragmentListProducts.newInstance(0, ""));
+            listFragments.add(FragmentListProducts.newInstance(MenuManager.getInstance(getActivity()).getItemsMenuLeft().get(groupPosition).getItemsSousMenu().get(childPosition).getId(), ""));
         }
 
         HomePagerAdapter adapter = new HomePagerAdapter(getChildFragmentManager(), listFragments);

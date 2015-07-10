@@ -30,9 +30,9 @@ public class Product implements Parcelable {
         price = Double.parseDouble(jsonProduct.optJSONObject("product").optString("price")) * 1.2;
         name = jsonProduct.optJSONObject("product").optString("name");
         description = jsonProduct.optJSONObject("product").optString("description");
+        quantityId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("stock_availables").optJSONObject(0).optString("id");
         try {
             imageId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("images").optJSONObject(0).optString("id");
-            quantityId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("stock_availables").optJSONObject(0).optString("id");
         }catch (NullPointerException e){
             e.printStackTrace();
         }

@@ -85,9 +85,24 @@
                 android:id="@+id/quantite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="65dp"
                 android:inputType="number"
                 android:selectAllOnFocus="true"
                 android:text="1" />
+
+            <ProgressBar
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/stock_loading"
+                style="?android:attr/progressBarStyleSmall" />
+
+            <TextView
+                android:id="@+id/stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disponibilité"
+                android:textColor="@color/grey_dark" />
 
         </LinearLayout>
 
@@ -96,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/button"
+            android:background="@drawable/button_gris"
             android:padding="5dp"
             android:text="Ajouter au panier"
             android:textColor="@color/white"

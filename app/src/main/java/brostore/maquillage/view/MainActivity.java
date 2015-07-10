@@ -162,13 +162,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
             if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getItemsSousMenu() == null) {
-                //TODO
-                Toast.makeText(getApplicationContext(), "Lol" + MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getTitre(), Toast.LENGTH_LONG).show();
-
                 if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getTitre().contains("Compte")) {
-
+                    FragmentCompte fc = new FragmentCompte();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fc).commit();
+                    ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
+                    getSupportActionBar().setTitle("COMPTE");
                 }
-
             }
             return false;
         }

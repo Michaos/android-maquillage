@@ -121,26 +121,14 @@ public class MenuManager {
     }
 
     public synchronized boolean parseMenuFromCache(JSONObject json) {
-
-        System.out.println("DEBUG 1");
-
         List<HideMenuItem> itemsMenuLeftTemp = new ArrayList<>();
         try {
-
-            System.out.println("DEBUG 2");
-
             JSONArray jsonMenuLeft = json.getJSONObject("category").getJSONObject("associations").getJSONArray("categories");
             for (int i = 0; i < jsonMenuLeft.length(); i++) {
-
-                System.out.println("DEBUG 3 :: " + i);
-
                 JSONObject cat = CacheManager.loadCache(FluxManager.DIR_DATA, "Categorie::"+jsonMenuLeft.getJSONObject(i).optString("id", ""));
                 HideMenuItem hmi = new HideMenuItem(mContext, cat, 2);
                 itemsMenuLeftTemp.add(hmi);
             }
-
-            System.out.println("DEBUG 4");
-
             itemsMenuLeft = itemsMenuLeftTemp;
         } catch (JSONException e) {
             e.printStackTrace();

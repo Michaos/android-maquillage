@@ -22,7 +22,6 @@ public class Splashscreen extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(MenuManager.OK_MENU_CACHE_OR_RAW) || intent.getAction().equals(MenuManager.OK_MENU)){
-                System.out.println("AAAA receive splashcreen");
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }

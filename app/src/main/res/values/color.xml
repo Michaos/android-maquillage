@@ -35,5 +35,8 @@
 
     <color name="rose">#EE269E</color>
     <color name="rose_bright">#ff2aad</color>
+    <color name="green_en_stock">#21ca16</color>
+    <color name="orange_rare_stock">#ff9400</color>
+    <color name="rouge_rupture_stock">#ff110a</color>
 
 </resources>

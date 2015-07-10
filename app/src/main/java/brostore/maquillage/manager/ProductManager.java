@@ -143,7 +143,6 @@ public class ProductManager {
         protected Boolean doInBackground(Product... params) {
 
             String quantityId = params[0].getQuantityId();
-
             JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_STOCK.replace("__ID_QUANTITY__", quantityId));
 
             if (jsonObject == null) {
