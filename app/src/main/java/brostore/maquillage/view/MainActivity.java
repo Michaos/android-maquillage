@@ -15,11 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import brostore.maquillage.R;
 import brostore.maquillage.adapter.BasketAdapterRight;
@@ -219,16 +220,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(basketAdapterRight.getCount() > 0){
+            setTotalBasket();
+            setTotalSaved();
             findViewById(R.id.empty_basket).setVisibility(View.GONE);
+            findViewById(R.id.total_saving).setVisibility(View.VISIBLE);
             findViewById(R.id.total_basket).setVisibility(View.VISIBLE);
             findViewById(R.id.validate_basket).setVisibility(View.VISIBLE);
         }else{
             findViewById(R.id.empty_basket).setVisibility(View.VISIBLE);
+            findViewById(R.id.total_saving).setVisibility(View.GONE);
             findViewById(R.id.total_basket).setVisibility(View.GONE);
             findViewById(R.id.validate_basket).setVisibility(View.GONE);
         }
     }
 
+    public void setTotalBasket() {
+        TextView textViewTotalBasket = (TextView) findViewById(R.id.total_basket);
+        String total  = String.format("%.2f", DataManager.getInstance(this).getUserAnon().getTotalBasket());
+        textViewTotalBasket.setText("Total du panier : " + total  + "€");
+    }
+
+    public void setTotalSaved() {
+        TextView textViewTotalSaving = (TextView) findViewById(R.id.total_saving);
+        String total = String.format("%.2f", DataManager.getInstance(this).getUserAnon().getTotalSaving());
+        textViewTotalSaving.setText("Vous avez économisé : " + total + "€");
+    }
+    
     @Override
     protected void onResume() {
         super.onResume();

@@ -1,12 +1,10 @@
 package brostore.maquillage.adapter;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -14,6 +12,7 @@ import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.manager.DataManager;
 import brostore.maquillage.manager.FluxManager;
+import brostore.maquillage.utils.Utils;
 import brostore.maquillage.wrapper.ProductWrapper;
 
 public class ProductAdapter extends BaseAdapter {
@@ -74,9 +73,9 @@ public class ProductAdapter extends BaseAdapter {
             wrapper.getArticlePrix2().setVisibility(View.GONE);
         }
 
-        wrapper.getArticlePrix1().setText(product.getPrice() + "€ ");
+        wrapper.getArticlePrix1().setText(String.format("%.2f", product.getPrice()) + "€ ");
         wrapper.getArticlePrix1().getPaint().setStrikeThruText(true);
-        wrapper.getArticlePrix2().setText(product.getPriceReduced() + "€");
+        wrapper.getArticlePrix2().setText(String.format("%.2f", product.getReducedPrice()) + "€");
 
         return (row);
     }

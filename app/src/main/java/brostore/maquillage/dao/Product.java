@@ -1,16 +1,10 @@
 package brostore.maquillage.dao;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.json.JSONObject;
-
-import java.io.Serializable;
-
-import brostore.maquillage.R;
 
 public class Product implements Parcelable {
 
@@ -86,13 +80,9 @@ public class Product implements Parcelable {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
-        return String.format("%.2f", price);
-    }
+    public Double getPrice() { return price; }
 
-    public String getPriceReduced() {
-        return String.format("%.2f", reducedPrice);
-    }
+    public Double getReducedPrice() { return reducedPrice; }
 
     public String getName() {
         return name;
@@ -126,12 +116,10 @@ public class Product implements Parcelable {
         this.bitmapImage = bitmap;
     }
 
-    public void calculReducedPrice(String reduction) {
-        this.reducedPrice = price - Double.parseDouble(reduction);
-    }
+    public void calculReducedPrice(Double reduction) { this.reducedPrice = price - reduction; }
 
     public boolean noReduc() {
-        return getPrice().equals(getPriceReduced());
+        return getPrice() == getReducedPrice();
     }
 
     @Override

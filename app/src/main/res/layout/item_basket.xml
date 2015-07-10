@@ -36,7 +36,7 @@
         android:textColor="@color/rose" />
 
     <TextView
-        android:id="@+id/article_quantite"
+        android:id="@+id/article_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/article_prix"

@@ -15,26 +15,22 @@ public class User {
     private int idGender;
     private Date birthday;
     private ArrayList<Product> basket;
-    private ArrayList<Integer> quantites;
+    private ArrayList<Integer> quantities;
+    private Double totalBasket;
+    private Double totalSaving;
 
     public User(){
         //TODO
         basket = new ArrayList<>();
-        quantites = new ArrayList<>();
+        quantities = new ArrayList<>();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -42,7 +38,6 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -50,7 +45,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -58,7 +52,6 @@ public class User {
     public int getIdGender() {
         return idGender;
     }
-
     public void setIdGender(int idGender) {
         this.idGender = idGender;
     }
@@ -66,7 +59,6 @@ public class User {
     public Date getBirthday() {
         return birthday;
     }
-
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
@@ -74,18 +66,22 @@ public class User {
     public ArrayList<Product> getBasket() {
         return basket;
     }
-
     public void setBasket(ArrayList<Product> basket) {
         this.basket = basket;
     }
 
-    public ArrayList<Integer> getQuantites() {
-        return quantites;
+    public ArrayList<Integer> getQuantities() {
+        return quantities;
+    }
+    public void setQuantities(ArrayList<Integer> quantities) {
+        this.quantities = quantities;
     }
 
-    public void setQuantites(ArrayList<Integer> quantites) {
-        this.quantites = quantites;
-    }
+    public Double getTotalBasket() { return totalBasket; }
+    public void setTotalBasket(Double totalBasket) { this.totalBasket = totalBasket; }
+
+    public Double getTotalSaving() { return totalSaving; }
+    public void setTotalSaving(Double totalSaving) { this.totalSaving = totalSaving; }
 
     public int hasAlreadyThatProduct(Product p){
         for (int i = 0; i < basket.size(); i++) {

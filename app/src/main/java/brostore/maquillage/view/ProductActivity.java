@@ -23,6 +23,7 @@ import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.manager.DataManager;
 import brostore.maquillage.manager.ProductManager;
+import brostore.maquillage.utils.Utils;
 
 public class ProductActivity extends Activity {
 
@@ -67,9 +68,9 @@ public class ProductActivity extends Activity {
 
         ((TextView)findViewById(R.id.article_nom)).setText(myProduct.getName());
         ((TextView)findViewById(R.id.article_infos)).setText(Html.fromHtml(myProduct.getDescription()));
-        ((TextView)findViewById(R.id.article_prix1)).setText(" " + myProduct.getPrice() + "€ ");
+        ((TextView)findViewById(R.id.article_prix1)).setText(" " + String.format("%.2f", myProduct.getPrice()) + "€ ");
         ((TextView)findViewById(R.id.article_prix1)).getPaint().setStrikeThruText(true);
-        ((TextView)findViewById(R.id.article_prix2)).setText(myProduct.getPriceReduced() + "€");
+        ((TextView)findViewById(R.id.article_prix2)).setText(String.format("%.2f" ,myProduct.getReducedPrice()) + "€");
 
     }
 
@@ -96,14 +97,15 @@ public class ProductActivity extends Activity {
         findViewById(R.id.ajout_panier).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantite = Integer.parseInt(((EditText) findViewById(R.id.quantite)).getText().toString());
+                int quantity = Integer.parseInt(((EditText) findViewById(R.id.quantity)).getText().toString());
 
-                if(quantite > quantityAvailable){
+                if(quantity > quantityAvailable){
                     Toast.makeText(getApplicationContext(), "Le nombre de produits disponible pour cette référence est limitée à " + quantityAvailable, Toast.LENGTH_LONG).show();
                 }else{
-                    DataManager.getInstance(getApplicationContext()).addInBasket(myProduct, quantite);
+                    DataManager.getInstance(getApplicationContext()).addInBasket(myProduct, quantity);
                     finish();
                 }
+                finish();
             }
         });
     }

@@ -33,6 +33,8 @@ public class DataManager {
     private HashMap<String, Typeface> listFont = new HashMap<String, Typeface>();
 
     public Boolean hasToOpenBasket = false;
+    public Double totalBasket = 0.0;
+    public Double totalSaving = 0.0;
     private User userAnon;
 
     public static DataManager getInstance(Context context) {
@@ -105,16 +107,22 @@ public class DataManager {
         }
     }
 
-    public void addInBasket(Product p, int quantite){
+    public void addInBasket(Product p, int quantity){
+        totalBasket +=  p.getReducedPrice() * quantity;
+        getUserAnon().setTotalBasket(totalBasket);
+
+        totalSaving += (p.getPrice() - p.getReducedPrice()) * quantity;
+        getUserAnon().setTotalSaving(totalSaving);
+
         int has = getUserAnon().hasAlreadyThatProduct(p);
-        if(has != -1){
-            int qte = getUserAnon().getQuantites().get(has);
-            qte += quantite;
+        if(has != -1) {
+            int qte = getUserAnon().getQuantities().get(has);
+            qte += quantity;
             getUserAnon().getBasket().set(has, p);
-            getUserAnon().getQuantites().set(has, qte);
+            getUserAnon().getQuantities().set(has, qte);
         }else{
             getUserAnon().getBasket().add(p);
-            getUserAnon().getQuantites().add(quantite);
+            getUserAnon().getQuantities().add(quantity);
         }
         hasToOpenBasket = true;
     }

@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.dao.User;
+import brostore.maquillage.utils.Utils;
 import brostore.maquillage.wrapper.BasketWrapper;
 
 public class BasketAdapterRight extends BaseAdapter {
@@ -26,7 +26,7 @@ public class BasketAdapterRight extends BaseAdapter {
         inflater = LayoutInflater.from(context);
         mContext = context;
         myProducts = myUser.getBasket();
-        myQuantities = myUser.getQuantites();
+        myQuantities = myUser.getQuantities();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class BasketAdapterRight extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Product getItem(int position) {
         return myProducts.get(position);
     }
 
@@ -63,9 +63,9 @@ public class BasketAdapterRight extends BaseAdapter {
             wrapper.getArticleImage().setImageBitmap(p.getBitmapImage());
         }
         wrapper.getArticleNom().setText(p.getName());
-        wrapper.getArticlePrix().setText(p.getPriceReduced()+"€");
-        wrapper.getArticleQuantite().setText("Qté : " + myQuantities.get(position));
-        double prixTotal = Double.parseDouble(p.getPriceReduced().replace(",", ".")) * myQuantities.get(position);
+        wrapper.getArticlePrix().setText(String.format("%.2f", p.getReducedPrice())+"€");
+        wrapper.getArticleQuantity().setText("Qté : " + myQuantities.get(position));
+        double prixTotal = p.getReducedPrice() * myQuantities.get(position);
         wrapper.getArticlePrixTotal().setText("Total : " + String.format("%.2f", prixTotal)+"€");
 
         return row;

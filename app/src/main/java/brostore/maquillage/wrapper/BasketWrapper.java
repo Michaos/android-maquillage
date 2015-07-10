@@ -15,7 +15,7 @@ public class BasketWrapper {
     private ImageView image;
     private TextView name;
     private TextView prix;
-    private TextView quantite;
+    private TextView quantity;
     private TextView prixTotal;
 
     public BasketWrapper(View base) {
@@ -47,11 +47,11 @@ public class BasketWrapper {
         return (prix);
     }
 
-    public TextView getArticleQuantite() {
-        if (quantite == null) {
-            quantite = (TextView) baseView.findViewById(R.id.article_quantite);
+    public TextView getArticleQuantity() {
+        if (quantity == null) {
+            quantity = (TextView) baseView.findViewById(R.id.article_quantity);
         }
-        return (quantite);
+        return (quantity);
     }
 
     public TextView getArticlePrixTotal() {

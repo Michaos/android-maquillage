@@ -98,9 +98,10 @@ public class ProductManager {
                 JSONObject jsonPrice = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId()+""));
 
                 if(jsonPrice != null){
-                    product.calculReducedPrice(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction"));
+                    Double reduction = (Double.parseDouble(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction")));
+                    product.calculReducedPrice(reduction);
                 }else{
-                    product.calculReducedPrice("0");
+                    product.calculReducedPrice(0.0);
                 }
                 productsListTemp.add(product);
             }
