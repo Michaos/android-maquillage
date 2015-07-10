@@ -22,7 +22,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.1.1'
-    compile project(':volley')
     compile files('libs/android-query-full.0.26.7.jar')
     compile files('libs/PayPalAndroidSDK-2.9.8.jar')
 }
