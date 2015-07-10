@@ -1,0 +1,27 @@
+{
+    "category": {
+        "id": 60,
+        "id_parent": "29",
+        "level_depth": "4",
+        "nb_products_recursive": "1",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "1",
+        "date_add": "2015-06-02 00:10:33",
+        "date_upd": "2015-06-02 00:10:33",
+        "name": "Soin jour",
+        "link_rewrite": "soin-jour",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "products": [
+                {
+                    "id": "112"
+                }
+            ]
+        }
+    }
+}

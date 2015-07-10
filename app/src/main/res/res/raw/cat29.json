@@ -1,0 +1,30 @@
+{
+    "category": {
+        "id": 29,
+        "id_parent": "28",
+        "level_depth": "3",
+        "nb_products_recursive": "1",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "1",
+        "date_add": "2015-05-18 22:38:12",
+        "date_upd": "2015-05-18 22:38:12",
+        "name": "Jour et nuit",
+        "link_rewrite": "jour-et-nuit",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "categories": [
+                {
+                    "id": "60"
+                },
+                {
+                    "id": "61"
+                }
+            ]
+        }
+    }
+}

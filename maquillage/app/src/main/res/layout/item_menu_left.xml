@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuItemLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/sepView"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/divider_maquillage" />
+
+    <LinearLayout
+        android:id="@+id/selView"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@xml/menu_item_background"
+        android:orientation="horizontal" >
+
+        <View
+            android:id="@+id/colorView"
+            android:layout_width="6dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/fullImgView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/menuView"
+            android:layout_width="1px"
+            android:layout_height="1px"
+            android:layout_gravity="center_vertical"
+            android:duplicateParentState="true"
+            android:paddingBottom="12dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:paddingTop="12dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/menuText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:text="Chargement..."
+            android:textColor="@xml/text_menu"
+            android:textScaleX="0.8"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

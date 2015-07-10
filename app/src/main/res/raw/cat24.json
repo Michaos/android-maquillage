@@ -1,0 +1,33 @@
+{
+    "category": {
+        "id": 24,
+        "id_parent": "12",
+        "level_depth": "3",
+        "nb_products_recursive": "120",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "4",
+        "date_add": "2015-05-18 22:34:08",
+        "date_upd": "2015-05-20 21:05:00",
+        "name": "Yeux",
+        "link_rewrite": "yeux",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "categories": [
+                {
+                    "id": "25"
+                },
+                {
+                    "id": "26"
+                },
+                {
+                    "id": "27"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "category": {
+        "id": 19,
+        "id_parent": "17",
+        "level_depth": "4",
+        "nb_products_recursive": "13",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "2",
+        "date_add": "2015-05-18 22:30:56",
+        "date_upd": "2015-05-18 22:31:22",
+        "name": "Soins et durcisseurs",
+        "link_rewrite": "soins-et-durcisseurs",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "products": [
+                {
+                    "id": "169"
+                },
+                {
+                    "id": "171"
+                },
+                {
+                    "id": "172"
+                },
+                {
+                    "id": "174"
+                },
+                {
+                    "id": "176"
+                },
+                {
+                    "id": "177"
+                },
+                {
+                    "id": "179"
+                },
+                {
+                    "id": "180"
+                },
+                {
+                    "id": "182"
+                },
+                {
+                    "id": "184"
+                },
+                {
+                    "id": "186"
+                },
+                {
+                    "id": "188"
+                },
+                {
+                    "id": "256"
+                }
+            ]
+        }
+    }
+}

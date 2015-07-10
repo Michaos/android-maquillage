@@ -1,0 +1,39 @@
+{
+    "category": {
+        "id": 28,
+        "id_parent": "2",
+        "level_depth": "2",
+        "nb_products_recursive": "36",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "2",
+        "date_add": "2015-05-18 22:37:47",
+        "date_upd": "2015-05-18 22:37:47",
+        "name": "Soin visage",
+        "link_rewrite": "soin-visage",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "categories": [
+                {
+                    "id": "29"
+                },
+                {
+                    "id": "30"
+                },
+                {
+                    "id": "31"
+                },
+                {
+                    "id": "32"
+                },
+                {
+                    "id": "33"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "category": {
+        "id": 31,
+        "id_parent": "28",
+        "level_depth": "3",
+        "nb_products_recursive": "9",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "3",
+        "date_add": "2015-05-18 22:39:33",
+        "date_upd": "2015-05-18 22:39:33",
+        "name": "Démaquillant et nettoyant",
+        "link_rewrite": "demaquillant-et-nettoyant",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "products": [
+                {
+                    "id": "462"
+                },
+                {
+                    "id": "463"
+                },
+                {
+                    "id": "464"
+                },
+                {
+                    "id": "465"
+                },
+                {
+                    "id": "466"
+                },
+                {
+                    "id": "467"
+                },
+                {
+                    "id": "468"
+                },
+                {
+                    "id": "469"
+                },
+                {
+                    "id": "470"
+                }
+            ]
+        }
+    }
+}

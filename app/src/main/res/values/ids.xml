@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="image_container" />
+    <item name="dgv_wobble_tag" type="id" />
+    <item type="id" name="action_recherche" />
+    <item type="id" name="flurry_id" />
+    <item type="id" name="adapter_id" />
+</resources>

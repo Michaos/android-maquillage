@@ -1,0 +1,45 @@
+{
+    "category": {
+        "id": 34,
+        "id_parent": "2",
+        "level_depth": "2",
+        "nb_products_recursive": "11",
+        "active": "1",
+        "id_shop_default": "1",
+        "is_root_category": "0",
+        "position": "3",
+        "date_add": "2015-05-18 22:40:50",
+        "date_upd": "2015-05-18 22:40:50",
+        "name": "Soin corps",
+        "link_rewrite": "soin-corps",
+        "description": "",
+        "meta_title": "",
+        "meta_description": "",
+        "meta_keywords": "",
+        "associations": {
+            "categories": [
+                {
+                    "id": "35"
+                },
+                {
+                    "id": "36"
+                },
+                {
+                    "id": "37"
+                },
+                {
+                    "id": "38"
+                },
+                {
+                    "id": "39"
+                },
+                {
+                    "id": "40"
+                },
+                {
+                    "id": "41"
+                }
+            ]
+        }
+    }
+}

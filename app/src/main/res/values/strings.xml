@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">maquillage</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Panier</string>
+
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+
+</resources>

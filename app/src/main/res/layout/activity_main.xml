@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- The main content view -->
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
+        <!-- The navigation drawer -->
+
+        <ExpandableListView
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="start"
+            android:background="@color/menu_background"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none" />
+
+        <RelativeLayout
+            android:id="@+id/right_drawer"
+            android:layout_width="310dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="end"
+            android:background="@color/menu_background"
+            android:clipToPadding="false"
+            android:divider="@color/grey_again"
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/your_basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:text="Votre Panier :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/empty_basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Votre panier est vide."
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/validate_basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button"
+                android:padding="10dp"
+                android:text="Valider le panier."
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/total_basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/validate_basket"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:text="Total du panier : 15,69€"
+                android:textColor="@color/white" />
+
+            <ListView
+                android:id="@+id/basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/total_basket"
+                android:layout_below="@+id/your_basket" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>
+</RelativeLayout>
