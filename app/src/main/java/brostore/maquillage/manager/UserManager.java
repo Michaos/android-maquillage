@@ -1,7 +1,9 @@
 package brostore.maquillage.manager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.content.LocalBroadcastManager;
 
 import org.json.JSONObject;
 
@@ -83,13 +85,13 @@ public class UserManager {
                 id = ((JSONObject) o).optJSONArray("customers").optJSONObject(0).optInt("id");
             }
 
-            JSONObject jsonObject =  ApiManager.callAPI(FluxManager.URL_GET_USER.replace("__ID__", id+""));
+            JSONObject jsonObjectUser =  ApiManager.callAPI(FluxManager.URL_GET_USER.replace("__ID__", id+""));
 
-            user.setId(jsonObject.optJSONObject("customer").optInt("id"));
-            user.setLastName(jsonObject.optJSONObject("customer").optString("lastname"));
-            user.setFirstName(jsonObject.optJSONObject("customer").optString("firstname"));
-            user.setIdGender(jsonObject.optJSONObject("customer").optString("id_gender"));
-            user.setBirthday(jsonObject.optJSONObject("customer").optString("birthday"));
+            user.setId(jsonObjectUser.optJSONObject("customer").optInt("id"));
+            user.setLastName(jsonObjectUser.optJSONObject("customer").optString("lastname"));
+            user.setFirstName(jsonObjectUser.optJSONObject("customer").optString("firstname"));
+            user.setIdGender(jsonObjectUser.optJSONObject("customer").optString("id_gender"));
+            user.setBirthday(jsonObjectUser.optJSONObject("customer").optString("birthday"));
 
             return true;
         }
@@ -97,6 +99,7 @@ public class UserManager {
         @Override
         protected void onPostExecute(Boolean result) {
             if(result){
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK CONNECT"));
             }else{
                 System.out.println("ERROR IDENTIFICATION");
             }

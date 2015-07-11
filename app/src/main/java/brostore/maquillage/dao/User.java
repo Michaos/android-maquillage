@@ -17,11 +17,8 @@ public class User {
     private String mdp;
     private String idGender;
     private String birthday;
-    private String adresse = "";
-    private String cp  = "";
-    private String ville  = "";
-    private String pays;
-    private String tel;
+
+    private ArrayList<Address> listAdress;
 
     private ArrayList<Product> basket;
     private ArrayList<Integer> quantities;
@@ -83,46 +80,6 @@ public class User {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getCp() {
-        return cp;
-    }
-
-    public void setCp(String cp) {
-        this.cp = cp;
-    }
-
-    public String getPays() {
-        return pays;
-    }
-
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 
     // BASKET //
