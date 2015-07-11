@@ -26,7 +26,7 @@ public class FragmentCompte extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("OK CONNECT")) {
                 FragmentMonCompte fmc = new FragmentMonCompte();
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmc).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmc).commit();
             }else{
                 Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.INVISIBLE);
