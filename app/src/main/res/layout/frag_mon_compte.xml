@@ -6,24 +6,55 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/adresses"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="adresses"/>
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Mes adresses"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/commandes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="historique et détails des commandes"/>
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Mes commandes"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/infos"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="mes infos"/>
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Mes infos"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/connexion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ma wishlist"/>
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Ma Wishlist"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
 
 
 </LinearLayout>

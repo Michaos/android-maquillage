@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/loadinglayout"
         android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:padding="5dp"
         android:text="VOIR + D'ARTICLES"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -22,24 +22,28 @@
         android:id="@+id/loadinglayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:visibility="invisible">
 
         <ProgressBar
             android:id="@+id/progress"
-            style="?android:attr/progressBarStyleLarge"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/chargement" />
+            android:layout_alignBottom="@+id/chargement"
+            android:layout_alignTop="@id/chargement"
+            android:layout_toLeftOf="@+id/chargement"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/rose"
+            android:indeterminateTintMode="src_in" />
 
         <brostore.maquillage.custom.FontTextView
             android:id="@+id/chargement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/progress"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:padding="5dp"
             android:text="CHARGEMENT..."
             android:textColor="@color/black"
             android:textSize="25sp"

@@ -8,5 +8,10 @@
     <string name="navigation_drawer_close">close</string>
 
     <string name="facebook_app_id">__FACEBOOK_APP_ID__</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="email">E-mail</string>
+    <string name="ddn">Date de naissance : </string>
+    <string name="champs"><![CDATA[<![CDATA[<font color=\"#ff2aad\">*</font> champs obligatoires]]></string>
 
 </resources>

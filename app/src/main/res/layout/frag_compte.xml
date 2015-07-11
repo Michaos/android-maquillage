@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/loadinglayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/rose"
+        android:indeterminateTintMode="src_in" />
+
+    <brostore.maquillage.custom.FontTextView
+        android:id="@+id/chargement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/progress"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="horizontal">
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Connexion à votre compte en cours..." />
-
-    </LinearLayout>
+        android:padding="5dp"
+        android:text="Connexion à votre compte en cours..."
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:ttfNameTextView="ElleNovaC-Light.otf" />
 
     <LinearLayout
         android:id="@+id/formulairelayout"
@@ -35,8 +39,8 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
             android:background="@drawable/edittext"
             android:hint="Adresse e-mail"
             android:inputType="textEmailAddress"
@@ -47,9 +51,9 @@
             android:id="@+id/mdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/edittext"
             android:hint="Mot de passe"
             android:inputType="textPassword"
@@ -60,7 +64,7 @@
             android:id="@+id/connexion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:padding="10dp"
             android:text="Se connecter"
