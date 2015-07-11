@@ -84,13 +84,12 @@ public class UserManager {
             }
 
             JSONObject jsonObject =  ApiManager.callAPI(FluxManager.URL_GET_USER.replace("__ID__", id+""));
-            // en cours
-            /*user.setFirstName(jsonObject.optString(""));
-            user.setBirthday();
-            user.setId();
-            user.setIdGender();
-            user.setLastName();
-            user.set*/
+
+            user.setId(jsonObject.optJSONObject("customer").optInt("id"));
+            user.setLastName(jsonObject.optJSONObject("customer").optString("lastname"));
+            user.setFirstName(jsonObject.optJSONObject("customer").optString("firstname"));
+            user.setIdGender(jsonObject.optJSONObject("customer").optString("id_gender"));
+            user.setBirthday(jsonObject.optJSONObject("customer").optString("birthday"));
 
             return true;
         }

@@ -5,7 +5,6 @@ public class FluxManager {
 	public static String DIR_DATA = "/Android/data/brostore.maquillage";
 
 	public static final String API_KEY = "P863RUC17RUS3S9T7NZM9UP2DBIDHV6S";
-	//TODO connect user
 	public static final String COOKIE_KEY = "aotzJECbeSfvXZmTJhOi2oKLJ1KKkCX3PVNDqOFNOcLR4HUhKKgB19Lw";
 
 	public static final String URL_MENU             = "http://www.maquillage.fr/maquillage-marque/api/categories/2?output_format=JSON";

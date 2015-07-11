@@ -1,7 +1,6 @@
 package brostore.maquillage.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import brostore.maquillage.manager.FluxManager;
 import brostore.maquillage.utils.Utils;
@@ -16,25 +15,32 @@ public class User {
     private String firstName;
     private String email;
     private String mdp;
-    private int idGender;
-    private Date birthday;
+    private String idGender;
+    private String birthday;
+    private String adresse = "";
+    private String cp  = "";
+    private String ville  = "";
+    private String pays;
+    private String tel;
+
     private ArrayList<Product> basket;
     private ArrayList<Integer> quantities;
     private Double totalBasket;
     private Double totalSaving;
 
     public User(){
-        //TODO
         basket = new ArrayList<>();
         quantities = new ArrayList<>();
     }
 
     public int getId() { return id; }
+
     public void setId(int id) { this.id = id; }
 
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -42,6 +48,7 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -49,23 +56,76 @@ public class User {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public int getIdGender() {
+    public String getIdGender() {
         return idGender;
     }
-    public void setIdGender(int idGender) {
+
+    public void setIdGender(String idGender) {
         this.idGender = idGender;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
-    public void setBirthday(Date birthday) {
+
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+    public String getEncryitedMdp() {
+        return Utils.md5(FluxManager.COOKIE_KEY + mdp);
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    // BASKET //
 
     public ArrayList<Product> getBasket() {
         return basket;
@@ -94,13 +154,5 @@ public class User {
             }
         }
         return -1;
-    }
-
-    public String getEncryitedMdp() {
-        return Utils.md5(FluxManager.COOKIE_KEY + mdp);
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
     }
 }
