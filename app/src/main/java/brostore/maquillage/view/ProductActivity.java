@@ -26,7 +26,9 @@ import brostore.maquillage.manager.UserManager;
 public class ProductActivity extends Activity {
 
     private Product myProduct;
-    int quantityAvailable;
+    private int quantityAvailable;
+
+    private boolean isFavorite;
 
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
@@ -50,6 +52,7 @@ public class ProductActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_product);
 
+        //TODO
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         IntentFilter filter = new IntentFilter();
@@ -59,6 +62,12 @@ public class ProductActivity extends Activity {
         myProduct = getIntent().getParcelableExtra("product");
 
         ProductManager.getInstance(this).getQuantityForProduct(myProduct);
+
+        init();
+
+    }
+
+    private void init(){
 
         if(myProduct.getBitmapImage() == null){
             ((ImageView)findViewById(R.id.article_image)).setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.maquillage));
@@ -70,20 +79,39 @@ public class ProductActivity extends Activity {
         ((TextView)findViewById(R.id.article_infos)).setText(Html.fromHtml(myProduct.getDescription()));
         ((TextView)findViewById(R.id.article_prix1)).setText(" " + String.format("%.2f", myProduct.getPrice()) + "€ ");
         ((TextView)findViewById(R.id.article_prix1)).getPaint().setStrikeThruText(true);
-        ((TextView)findViewById(R.id.article_prix2)).setText(String.format("%.2f" ,myProduct.getReducedPrice()) + "€");
+        ((TextView)findViewById(R.id.article_prix2)).setText(String.format("%.2f", myProduct.getReducedPrice()) + "€");
 
+        isFavorite = ProductManager.getInstance(this).isProductFavoris(myProduct.getId());
+
+        if(isFavorite){
+            System.out.println("FAVORIS OUI");
+            ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_black_48dp);
+        }else{
+            System.out.println("FAVORIS NON");
+        }
+
+        findViewById(R.id.like).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchFavoriteStatus();
+            }
+        });
     }
 
-    @Override
-    protected void onDestroy() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadCastReceiver);
-        super.onDestroy();
+    private void switchFavoriteStatus(){
+        isFavorite = !isFavorite;
+        if(isFavorite){
+            ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_black_48dp);
+            ProductManager.getInstance(this).saveProductFavoris(myProduct);
+        }else{
+            ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_border_black_48dp);
+            ProductManager.getInstance(this).deleteProductFavoris(myProduct);
+        }
     }
 
     private void inStock(boolean rare){
 
         findViewById(R.id.stock_loading).setVisibility(View.GONE);
-
 
         if(rare){
             ((TextView)findViewById(R.id.stock)).setText("o Derniers");
@@ -99,9 +127,9 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 int quantity = Integer.parseInt(((EditText) findViewById(R.id.quantity)).getText().toString());
 
-                if(quantity > quantityAvailable){
+                if (quantity > quantityAvailable) {
                     Toast.makeText(getApplicationContext(), "Le nombre de produits disponible pour cette référence est limitée à " + quantityAvailable, Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     UserManager.getInstance(getApplicationContext()).addInBasket(myProduct, quantity);
                     finish();
                 }
@@ -122,5 +150,11 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadCastReceiver);
+        super.onDestroy();
     }
 }

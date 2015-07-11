@@ -18,7 +18,6 @@ public class Product implements Parcelable {
     String imageId;
     Bitmap bitmapImage;
 
-
     public Product(JSONObject jsonProduct) {
         id = jsonProduct.optJSONObject("product").optInt("id");
         price = Double.parseDouble(jsonProduct.optJSONObject("product").optString("price")) * 1.2;
@@ -30,6 +29,16 @@ public class Product implements Parcelable {
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+    }
+
+    public Product(String id, String name, String imageId, String price, String description, String quantityId, String quantity) {
+        this.id = Integer.parseInt(id);
+        this.name = name;
+        this.imageId = imageId;
+        this.price = Double.parseDouble(price);
+        this.description = description;
+        this.quantityId = quantityId;
+        this.quantity = quantity;
     }
 
     protected Product(Parcel in) {

@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 
 import brostore.maquillage.R;
 import brostore.maquillage.manager.MenuManager;
+import brostore.maquillage.manager.ProductManager;
 
 public class Splashscreen extends Activity {
 
@@ -38,6 +39,9 @@ public class Splashscreen extends Activity {
         LocalBroadcastManager.getInstance(this).registerReceiver(broadCastReceiver, filter);
 
         popupInternet();
+
+        ProductManager.getInstance(this).initListFavoris();
+
     }
 
     public boolean isOnline() {

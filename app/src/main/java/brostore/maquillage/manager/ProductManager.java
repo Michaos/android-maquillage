@@ -2,7 +2,9 @@ package brostore.maquillage.manager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 
 import org.json.JSONArray;
@@ -12,6 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.utils.Utils;
@@ -24,6 +27,9 @@ public class ProductManager {
     public static int MAX = 8;
 
     private HashMap<String, List<Product>> listRubrique = new HashMap<>();
+
+    private ArrayList<Product> listProductsFavoris;
+    private String favoris = "Favoris";
 
     private ProductManager() {
 
@@ -80,21 +86,21 @@ public class ProductManager {
 
             int count = base + MAX;
 
-            if (count > jsonArray.length()){
+            if (count > jsonArray.length()) {
                 count = jsonArray.length() - count;
             }
 
-            for (int i = base; i < count ; i++) {
+            for (int i = base; i < count; i++) {
 
                 JSONObject jsonProduct = ApiManager.callAPI(FluxManager.URL_PRODUCT.replace("__ID__", jsonArray.getJSONObject(i).optString("id", "")));
                 Product product = new Product(jsonProduct);
 
-                JSONObject jsonPrice = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId()+""));
+                JSONObject jsonPrice = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));
 
-                if(jsonPrice != null){
+                if (jsonPrice != null) {
                     Double reduction = (Double.parseDouble(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction")));
                     product.calculReducedPrice(reduction);
-                }else{
+                } else {
                     product.calculReducedPrice(0.0);
                 }
                 productsListTemp.add(product);
@@ -109,14 +115,14 @@ public class ProductManager {
         return true;
     }
 
-    private void setList(String id, List<Product> list){
+    private void setList(String id, List<Product> list) {
         if (listRubrique == null) {
             listRubrique = new HashMap<>();
         }
 
-        if(listRubrique.get(id) != null && listRubrique.get(id).size() != 0){
+        if (listRubrique.get(id) != null && listRubrique.get(id).size() != 0) {
             listRubrique.get(id).addAll(list);
-        }else{
+        } else {
             listRubrique.put(id, list);
         }
     }
@@ -128,7 +134,7 @@ public class ProductManager {
         return new ArrayList<>();
     }
 
-    public void getQuantityForProduct(Product p){
+    public void getQuantityForProduct(Product p) {
         Utils.execute(new getQuantityForProductTask(), p);
     }
 
@@ -158,4 +164,81 @@ public class ProductManager {
             }
         }
     }
+
+    public void saveProductFavoris(final Product product) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String infoProduct = product.getName() + "!" + product.getImageId() + "!" + product.getPrice() + "!" + product.getDescription() + "!" + product.getQuantityId() + "!" + product.getQuantity();
+                SharedPreferences preferences = mContext.getSharedPreferences(favoris, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editeur = preferences.edit();
+                editeur.putString(product.getId() + "", infoProduct);
+                if (editeur.commit()) {
+                    Bundle b = new Bundle();
+                    b.putString("type", "ajout");
+                    mContext.sendBroadcast(new Intent("FavorisSaveSuccess" + product.getId()));
+                    listProductsFavoris.add(product);
+                } else {
+                    mContext.sendBroadcast(new Intent("FavorisSaveError" + product.getId()));
+                }
+            }
+        }).start();
+    }
+
+    public void deleteProductFavoris(final Product productToDelete) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences preferences = mContext.getSharedPreferences(favoris, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editeur = preferences.edit();
+                editeur.remove(Integer.toString(productToDelete.getId()));
+                if (editeur.commit()) {
+                    Bundle b = new Bundle();
+                    b.putString("type", "suppression");
+                    mContext.sendBroadcast(new Intent("FavorisDeleteSuccess"));
+                    initListFavoris();
+                } else {
+                    mContext.sendBroadcast(new Intent("FavorisDeleteError"));
+                }
+            }
+        }).start();
+    }
+
+    public void initListFavoris() {
+        listProductsFavoris = new ArrayList<>();
+        SharedPreferences preferences = mContext.getSharedPreferences(favoris, Context.MODE_PRIVATE);
+        Map<String, ?> keys = preferences.getAll();
+        for (Map.Entry<String, ?> entry : keys.entrySet()) {
+
+            String str = (String) entry.getValue();
+            String[] results = str.split("!");
+
+            String name = results[0];
+            String imageId = results[1];
+            String price = results[2];
+            String description = results[3];
+            String quantityId = results[4];
+            String quantity = results[5];
+
+            listProductsFavoris.add(new Product(entry.getKey(), name, imageId, price, description, quantityId, quantity));
+        }
+    }
+
+    public List<Product> getListProductsFavoris() {
+        if (listProductsFavoris != null) {
+            return listProductsFavoris;
+        } else {
+            return new ArrayList<Product>();
+        }
+    }
+
+    public Boolean isProductFavoris(int idProduct) {
+        for (int i = 0; i < listProductsFavoris.size(); i++) {
+            if (idProduct == listProductsFavoris.get(i).getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
