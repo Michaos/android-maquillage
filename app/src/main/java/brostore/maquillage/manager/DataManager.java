@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 import brostore.maquillage.dao.Product;
-import brostore.maquillage.dao.User;
 import brostore.maquillage.utils.Utils;
 
 /**
@@ -22,20 +21,10 @@ import brostore.maquillage.utils.Utils;
  */
 public class DataManager {
 
-    public static final long TIMING_SOFT_TTL = 86400000L; // 1 jours
-    public static final long TIMING_TTL = 8640000000L; // 100 jours
-
-    public static final String CUST_PARAM_BLUR = "?custParam=blur";
-
     private static DataManager instance;
     private static Context mContext;
 
     private HashMap<String, Typeface> listFont = new HashMap<String, Typeface>();
-
-    public Boolean hasToOpenBasket = false;
-    public Double totalBasket = 0.0;
-    public Double totalSaving = 0.0;
-    private User userAnon;
 
     public static DataManager getInstance(Context context) {
         if (instance == null) {
@@ -107,30 +96,6 @@ public class DataManager {
         }
     }
 
-    public void addInBasket(Product p, int quantity){
-        totalBasket +=  p.getReducedPrice() * quantity;
-        getUserAnon().setTotalBasket(totalBasket);
 
-        totalSaving += (p.getPrice() - p.getReducedPrice()) * quantity;
-        getUserAnon().setTotalSaving(totalSaving);
 
-        int has = getUserAnon().hasAlreadyThatProduct(p);
-        if(has != -1) {
-            int qte = getUserAnon().getQuantities().get(has);
-            qte += quantity;
-            getUserAnon().getBasket().set(has, p);
-            getUserAnon().getQuantities().set(has, qte);
-        }else{
-            getUserAnon().getBasket().add(p);
-            getUserAnon().getQuantities().add(quantity);
-        }
-        hasToOpenBasket = true;
-    }
-
-    public User getUserAnon(){
-        if(userAnon == null){
-            userAnon = new User();
-        }
-        return userAnon;
-    }
 }

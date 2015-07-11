@@ -51,7 +51,7 @@ public class Utils {
 	      return result;
 	} 
 
-	private static String md5(String in) {
+	public static String md5(String in) {
 		MessageDigest digest;
 		try {
 			digest = MessageDigest.getInstance("MD5");

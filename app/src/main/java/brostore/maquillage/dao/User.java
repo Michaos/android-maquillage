@@ -3,6 +3,9 @@ package brostore.maquillage.dao;
 import java.util.ArrayList;
 import java.util.Date;
 
+import brostore.maquillage.manager.FluxManager;
+import brostore.maquillage.utils.Utils;
+
 /**
  * Created by Michaos on 07/07/2015.
  */
@@ -12,6 +15,7 @@ public class User {
     private String lastName;
     private String firstName;
     private String email;
+    private String mdp;
     private int idGender;
     private Date birthday;
     private ArrayList<Product> basket;
@@ -90,5 +94,13 @@ public class User {
             }
         }
         return -1;
+    }
+
+    public String getEncryitedMdp() {
+        return Utils.md5(FluxManager.COOKIE_KEY + mdp);
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
 }

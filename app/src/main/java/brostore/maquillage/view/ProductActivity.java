@@ -1,16 +1,13 @@
 package brostore.maquillage.view;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
@@ -19,11 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+
 import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
-import brostore.maquillage.manager.DataManager;
 import brostore.maquillage.manager.ProductManager;
-import brostore.maquillage.utils.Utils;
+import brostore.maquillage.manager.UserManager;
 
 public class ProductActivity extends Activity {
 
@@ -51,6 +49,8 @@ public class ProductActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_product);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK QUANTITY");
@@ -102,7 +102,7 @@ public class ProductActivity extends Activity {
                 if(quantity > quantityAvailable){
                     Toast.makeText(getApplicationContext(), "Le nombre de produits disponible pour cette référence est limitée à " + quantityAvailable, Toast.LENGTH_LONG).show();
                 }else{
-                    DataManager.getInstance(getApplicationContext()).addInBasket(myProduct, quantity);
+                    UserManager.getInstance(getApplicationContext()).addInBasket(myProduct, quantity);
                     finish();
                 }
                 finish();

@@ -20,13 +20,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import brostore.maquillage.R;
 import brostore.maquillage.adapter.BasketAdapterRight;
 import brostore.maquillage.adapter.MenuAdapterLeft;
-import brostore.maquillage.manager.DataManager;
 import brostore.maquillage.manager.MenuManager;
+import brostore.maquillage.manager.UserManager;
 import brostore.maquillage.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -200,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
     private void initBasket() {
         mDrawerRight = (RelativeLayout) findViewById(R.id.right_drawer);
         basket = (ListView) findViewById(R.id.basket);
-        basketAdapterRight = new BasketAdapterRight(this, DataManager.getInstance(this).getUserAnon());
+        basketAdapterRight = new BasketAdapterRight(this, UserManager.getInstance(this).getUser());
         basket.setAdapter(basketAdapterRight);
 
         findViewById(R.id.validate_basket).setOnClickListener(new View.OnClickListener() {
@@ -213,10 +211,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshBasket(){
-        if (DataManager.getInstance(this).hasToOpenBasket) {
+        if (UserManager.getInstance(this).hasToOpenBasket) {
             basketAdapterRight.notifyDataSetChanged();
             mDrawerLayout.openDrawer(mDrawerRight);
-            DataManager.getInstance(this).hasToOpenBasket = false;
+            UserManager.getInstance(this).hasToOpenBasket = false;
         }
 
         if(basketAdapterRight.getCount() > 0){
@@ -236,13 +234,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setTotalBasket() {
         TextView textViewTotalBasket = (TextView) findViewById(R.id.total_basket);
-        String total  = String.format("%.2f", DataManager.getInstance(this).getUserAnon().getTotalBasket());
+        String total  = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalBasket());
         textViewTotalBasket.setText("Total du panier : " + total  + "€");
     }
 
     public void setTotalSaved() {
         TextView textViewTotalSaving = (TextView) findViewById(R.id.total_saving);
-        String total = String.format("%.2f", DataManager.getInstance(this).getUserAnon().getTotalSaving());
+        String total = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalSaving());
         textViewTotalSaving.setText("Vous avez économisé : " + total + "€");
     }
     
