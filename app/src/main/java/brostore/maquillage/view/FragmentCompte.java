@@ -11,7 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import brostore.maquillage.R;
@@ -28,9 +27,9 @@ public class FragmentCompte extends Fragment {
             if (intent.getAction().equals("OK CONNECT")) {
                 FragmentMonCompte fmc = new FragmentMonCompte();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmc).commit();
-            }else{
-                Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
-                rootView.findViewById(R.id.loadinglayout).setVisibility(View.INVISIBLE);
+            }else if (intent.getAction().equals("KO CONNECT")){
+                Toast.makeText(getActivity(), "E-mail ou Mot de passe incorrecte.", Toast.LENGTH_LONG).show();
+                rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
             }
         }
     };
@@ -44,6 +43,7 @@ public class FragmentCompte extends Fragment {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK CONNECT");
+        filter.addAction("KO CONNECT");
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
         return rootView;
@@ -58,7 +58,7 @@ public class FragmentCompte extends Fragment {
             public void onClick(View v) {
 
                 boolean go = true;
-                if (((EditText) rootView.findViewById(R.id.email)).getText().toString().trim().equalsIgnoreCase("")) {
+                /*if (((EditText) rootView.findViewById(R.id.email)).getText().toString().trim().equalsIgnoreCase("")) {
                     ((EditText) rootView.findViewById(R.id.email)).setError("Veuillez renseignez ce champ");
                     go = false;
                 } else {
@@ -70,11 +70,14 @@ public class FragmentCompte extends Fragment {
                     go = false;
                 } else {
                     ((EditText) rootView.findViewById(R.id.mdp)).setError(null);
-                }
+                }*/
 
                 if (go) {
-                    UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
-                    UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
+                    //UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
+                    //UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
+
+                    UserManager.getInstance(getActivity()).getUser().setEmail("test2@yopmail.com");
+                    UserManager.getInstance(getActivity()).getUser().setMdp("test2");
 
                     UserManager.getInstance(getActivity()).goConnect();
 

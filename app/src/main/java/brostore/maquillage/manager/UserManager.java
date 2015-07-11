@@ -101,7 +101,7 @@ public class UserManager {
             if(result){
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK CONNECT"));
             }else{
-                System.out.println("ERROR IDENTIFICATION");
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO CONNECT"));
             }
         }
     }

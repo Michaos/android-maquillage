@@ -60,9 +60,6 @@ public class ProductManager {
 
             boolean etat = parseProductsForCategory(jsonObject, params[1]);
 
-            if (etat) {
-                //CacheManager.createCache(jsonObject, DIR_DATA, "Menu");
-            }
             return etat;
         }
 
@@ -77,9 +74,6 @@ public class ProductManager {
     }
 
     public synchronized boolean parseProductsForCategory(JSONObject json, int base) {
-        if (json == null) {
-            return false;
-        }
         List<Product> productsListTemp = new ArrayList<>();
         try {
             JSONArray jsonArray = json.getJSONObject("category").getJSONObject("associations").getJSONArray("products");
@@ -87,7 +81,7 @@ public class ProductManager {
             int count = base + MAX;
 
             if (count > jsonArray.length()){
-                count = jsonArray.length();
+                count = jsonArray.length() - count;
             }
 
             for (int i = base; i < count ; i++) {
@@ -105,7 +99,9 @@ public class ProductManager {
                 }
                 productsListTemp.add(product);
             }
+
             setList(json.optJSONObject("category").optString("id"), productsListTemp);
+
         } catch (JSONException e) {
             e.printStackTrace();
             return false;

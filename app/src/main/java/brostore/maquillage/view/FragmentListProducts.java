@@ -22,7 +22,6 @@ import brostore.maquillage.manager.ProductManager;
 public class FragmentListProducts extends Fragment {
 
     private int id;
-    private String title;
     private ProductAdapter adapter;
     private int base;
     private boolean needInit = true;
@@ -36,7 +35,7 @@ public class FragmentListProducts extends Fragment {
                     init();
                 }else{
                     base += ProductManager.MAX;
-                    footerView.findViewById(R.id.loadinglayout).setVisibility(View.INVISIBLE);
+                    footerView.findViewById(R.id.loadinglayoutfooter).setVisibility(View.INVISIBLE);
                     footerView.findViewById(R.id.txt).setVisibility(View.VISIBLE);
                     adapter.notifyDataSetChanged();
                 }
@@ -65,17 +64,27 @@ public class FragmentListProducts extends Fragment {
         View rootView = inflater.inflate(R.layout.frag_products, container, false);
 
         id = this.getArguments().getInt("id");
-        title = this.getArguments().getString("title");
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK PRODUCTS" + id);
         filter.addAction("KO PRODUCTS" + id);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
-        base = 0;
-        ProductManager.getInstance(getActivity()).getProductsForCategory(id, base);
-
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        base = ProductManager.getInstance(getActivity()).getList(id + "").size();
+
+        if (base > 0){
+            init();
+        }else{
+            ProductManager.getInstance(getActivity()).getProductsForCategory(id, base);
+        }
+
     }
 
     private void init() {
@@ -85,7 +94,7 @@ public class FragmentListProducts extends Fragment {
 
         getView().findViewById(R.id.loadinglayout).setVisibility(View.INVISIBLE);
 
-        final GridViewWithHeaderAndFooter gridView = (GridViewWithHeaderAndFooter) getView().findViewById(R.id.listView);
+        GridViewWithHeaderAndFooter gridView = (GridViewWithHeaderAndFooter) getView().findViewById(R.id.listView);
         gridView.findViewById(R.id.listView).setVisibility(View.VISIBLE);
         gridView.setVerticalSpacing(1);
 
@@ -100,7 +109,7 @@ public class FragmentListProducts extends Fragment {
             @Override
             public void onClick(View view) {
                 ProductManager.getInstance(getActivity()).getProductsForCategory(id, base);
-                footerView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
+                footerView.findViewById(R.id.loadinglayoutfooter).setVisibility(View.VISIBLE);
                 footerView.findViewById(R.id.txt).setVisibility(View.GONE);
             }
         });

@@ -19,7 +19,7 @@
         app:ttfNameTextView="ElleNovaC-Light.otf" />
 
     <RelativeLayout
-        android:id="@+id/loadinglayout"
+        android:id="@+id/loadinglayoutfooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
