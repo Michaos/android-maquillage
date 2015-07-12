@@ -84,10 +84,7 @@ public class ProductActivity extends Activity {
         isFavorite = ProductManager.getInstance(this).isProductFavoris(myProduct.getId());
 
         if(isFavorite){
-            System.out.println("FAVORIS OUI");
             ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_black_48dp);
-        }else{
-            System.out.println("FAVORIS NON");
         }
 
         findViewById(R.id.like).setOnClickListener(new View.OnClickListener() {

@@ -23,4 +23,5 @@
     <string name="newsletter">S\'inscrire à la newsletter</string>
     <string name="verifmail">Vérification de l\'adresse mail...</string>
     <string name="connexion">Connexion à votre compte en cours...</string>
+    <string name="creation">Création de votre compte en cours...</string>
 </resources>

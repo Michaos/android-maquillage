@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import brostore.maquillage.manager.UserManager;
 public class FragmentCompte extends Fragment {
 
     private View rootView;
-    private AlertDialog.Builder builder;
 
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
@@ -53,6 +51,8 @@ public class FragmentCompte extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.frag_compte, container, false);
 
+        UserManager.getInstance(getActivity()).resetUser();
+
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK CONNECT");
         filter.addAction("KO CONNECT");
@@ -81,8 +81,8 @@ public class FragmentCompte extends Fragment {
                     //UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
 
                     //test
-                    UserManager.getInstance(getActivity()).getUser().setEmail("test2@yopmail.com");
-                    UserManager.getInstance(getActivity()).getUser().setMdp("test2");
+                    UserManager.getInstance(getActivity()).getUser().setEmail("finaltest@mail.com");
+                    UserManager.getInstance(getActivity()).getUser().setMdp("finaltest");
                     //test
 
                     UserManager.getInstance(getActivity()).goConnect();
@@ -97,9 +97,15 @@ public class FragmentCompte extends Fragment {
         rootView.findViewById(R.id.inscription).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkForm()) {
-                    UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
-                    UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
+                //todo remetre le checkform et enlevé le test
+                if (true /*checkForm()*/) {
+                    //UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
+                    //UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
+
+                    //test
+                    UserManager.getInstance(getActivity()).getUser().setEmail("finaltest@mail.com");
+                    UserManager.getInstance(getActivity()).getUser().setMdp("finaltest");
+                    //test
 
                     UserManager.getInstance(getActivity()).checkMail();
 

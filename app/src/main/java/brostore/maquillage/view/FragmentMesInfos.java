@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class FragmentMesInfos extends Fragment {
 
     private View rootView;
 
-    public FragmentMesInfos(){
+    public FragmentMesInfos() {
     }
 
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
@@ -43,7 +44,7 @@ public class FragmentMesInfos extends Fragment {
             if (intent.getAction().equals("EditSuccess")) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentMonCompte()).commit();
                 Toast.makeText(getActivity(), " Vos informations personnelles ont été mises à jour.", Toast.LENGTH_LONG).show();
-            }else if (intent.getAction().equals("EditFail")){
+            } else if (intent.getAction().equals("EditFail")) {
                 Toast.makeText(getActivity(), "Une erreur est survenue, réessayez plus tard.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
             }
@@ -67,13 +68,13 @@ public class FragmentMesInfos extends Fragment {
         init();
     }
 
-    private void init(){
+    private void init() {
 
-        if(UserManager.getInstance(getActivity()).getUser().getIdGender() != null && UserManager.getInstance(getActivity()).getUser().getIdGender().equals("2")){
+        if (UserManager.getInstance(getActivity()).getUser().getIdGender() != null && UserManager.getInstance(getActivity()).getUser().getIdGender().equals("2")) {
             ((RadioButton) getView().findViewById(R.id.femme)).setChecked(true);
-        }else if(UserManager.getInstance(getActivity()).getUser().getIdGender() != null && UserManager.getInstance(getActivity()).getUser().getIdGender().equals("1")){
+        } else if (UserManager.getInstance(getActivity()).getUser().getIdGender() != null && UserManager.getInstance(getActivity()).getUser().getIdGender().equals("1")) {
             ((RadioButton) getView().findViewById(R.id.homme)).setChecked(true);
-        }else{
+        } else {
             ((RadioButton) getView().findViewById(R.id.femme)).setChecked(false);
             ((RadioButton) getView().findViewById(R.id.homme)).setChecked(false);
         }
@@ -114,7 +115,7 @@ public class FragmentMesInfos extends Fragment {
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow((rootView.findViewById(R.id.email)).getWindowToken(), 0);
 
-                if(checkForm()) {
+                if (checkForm()) {
 
                     rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
 
@@ -126,21 +127,16 @@ public class FragmentMesInfos extends Fragment {
                     if (((RadioButton) getView().findViewById(R.id.homme)).isChecked()) {
                         userModified.setIdGender("1");
                     }
-                    if (((EditText) getView().findViewById(R.id.firstName)).getText() != null) {
-                        userModified.setFirstName(((EditText) getView().findViewById(R.id.firstName)).getText().toString());
-                    }
-                    if (((EditText) getView().findViewById(R.id.lastName)).getText() != null) {
-                        userModified.setLastName(((EditText) getView().findViewById(R.id.lastName)).getText().toString());
-                    }
-                    if (((EditText) getView().findViewById(R.id.email)).getText() != null) {
-                        userModified.setEmail(((EditText) getView().findViewById(R.id.email)).getText().toString());
-                    }
+                    userModified.setFirstName(((EditText) getView().findViewById(R.id.firstName)).getText().toString());
+                    userModified.setLastName(((EditText) getView().findViewById(R.id.lastName)).getText().toString());
+                    userModified.setEmail(((EditText) getView().findViewById(R.id.email)).getText().toString());
+
                     if (((EditText) getView().findViewById(R.id.jj)).getText() != null && ((EditText) getView().findViewById(R.id.mm)).getText() != null && ((EditText) getView().findViewById(R.id.aa)).getText() != null) {
                         userModified.setBirthday(((EditText) getView().findViewById(R.id.aa)).getText().toString() + "-" + ((EditText) getView().findViewById(R.id.mm)).getText().toString() + "-" + ((EditText) getView().findViewById(R.id.jj)).getText().toString());
                     }
                     if (((CheckBox) getView().findViewById(R.id.newsletter)).isChecked()) {
                         userModified.setNewsletter("1");
-                    }else{
+                    } else {
                         userModified.setNewsletter("0");
                     }
 
@@ -155,7 +151,7 @@ public class FragmentMesInfos extends Fragment {
 
     }
 
-    private boolean checkForm(){
+    private boolean checkForm() {
         if (((EditText) getView().findViewById(R.id.firstName)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.firstName)).setError("Veuillez renseignez ce champ");
             return false;
@@ -171,16 +167,16 @@ public class FragmentMesInfos extends Fragment {
         return true;
     }
 
-    public void dateClick(){
+    public void dateClick() {
 
         int mYear, mMonth, mDay;
         final Calendar today = Calendar.getInstance();
 
-        if(!((EditText) rootView.findViewById(R.id.jj)).getText().toString().equals("")){
+        if (!((EditText) rootView.findViewById(R.id.jj)).getText().toString().equals("")) {
             mDay = Integer.parseInt(((EditText) rootView.findViewById(R.id.jj)).getText().toString());
             mMonth = Integer.parseInt(((EditText) rootView.findViewById(R.id.mm)).getText().toString());
             mYear = Integer.parseInt(((EditText) rootView.findViewById(R.id.aa)).getText().toString());
-        }else{
+        } else {
             mDay = today.get(Calendar.DAY_OF_MONTH);
             mMonth = today.get(Calendar.MONTH);
             mYear = today.get(Calendar.YEAR);
@@ -207,6 +203,12 @@ public class FragmentMesInfos extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadCastReceiver);
     }
 
 }

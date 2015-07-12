@@ -29,12 +29,12 @@ public class User {
     private Double totalBasket;
     private Double totalSaving;
 
-    public User(){
+    public User() {
         basket = new ArrayList<>();
         quantities = new ArrayList<>();
     }
 
-    public User(User u){
+    public User(User u) {
         id = u.getId();
         lastName = u.getLastName();
         firstName = u.getFirstName();
@@ -45,9 +45,18 @@ public class User {
         userXML = u.getUserXML();
     }
 
-    public int getId() { return id; }
+    public User(ArrayList<Product> basket, ArrayList<Integer> quantities) {
+        this.basket = basket;
+        this.quantities = quantities;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getLastName() {
         return lastName;
@@ -82,6 +91,9 @@ public class User {
     }
 
     public String getBirthday() {
+        if(birthday.equals("--")){
+            return "";
+        }
         return birthday;
     }
 
@@ -90,15 +102,24 @@ public class User {
         birthdayCutted = birthday.split("-");
     }
 
-    public String getDdnj(){
+    public String getDdnj() {
+        if(birthdayCutted.length == 0){
+            return "";
+        }
         return birthdayCutted[2];
     }
 
-    public String getDdnm(){
+    public String getDdnm() {
+        if(birthdayCutted.length == 0){
+            return "";
+        }
         return birthdayCutted[1];
     }
 
-    public String getDdna(){
+    public String getDdna() {
+        if(birthdayCutted.length == 0){
+            return "";
+        }
         return birthdayCutted[0];
     }
 
@@ -135,6 +156,7 @@ public class User {
     public ArrayList<Product> getBasket() {
         return basket;
     }
+
     public void setBasket(ArrayList<Product> basket) {
         this.basket = basket;
     }
@@ -142,19 +164,30 @@ public class User {
     public ArrayList<Integer> getQuantities() {
         return quantities;
     }
+
     public void setQuantities(ArrayList<Integer> quantities) {
         this.quantities = quantities;
     }
 
-    public Double getTotalBasket() { return totalBasket; }
-    public void setTotalBasket(Double totalBasket) { this.totalBasket = totalBasket; }
+    public Double getTotalBasket() {
+        return totalBasket;
+    }
 
-    public Double getTotalSaving() { return totalSaving; }
-    public void setTotalSaving(Double totalSaving) { this.totalSaving = totalSaving; }
+    public void setTotalBasket(Double totalBasket) {
+        this.totalBasket = totalBasket;
+    }
 
-    public int hasAlreadyThatProduct(Product p){
+    public Double getTotalSaving() {
+        return totalSaving;
+    }
+
+    public void setTotalSaving(Double totalSaving) {
+        this.totalSaving = totalSaving;
+    }
+
+    public int hasAlreadyThatProduct(Product p) {
         for (int i = 0; i < basket.size(); i++) {
-            if (basket.get(i).getId() == p.getId()){
+            if (basket.get(i).getId() == p.getId()) {
                 return i;
             }
         }

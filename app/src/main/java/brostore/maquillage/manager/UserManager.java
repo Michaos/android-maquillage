@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -30,6 +31,9 @@ import brostore.maquillage.utils.Utils;
  */
 public class UserManager {
 
+    private static final int CODE_PUT_SUCCESS = 200;
+    private static final int CODE_POST_SUCCESS = 201;
+
     private static UserManager instance;
     private static Context mContext;
 
@@ -49,6 +53,10 @@ public class UserManager {
             mContext = context;
         }
         return instance;
+    }
+
+    public void resetUser() {
+        user = new User(user.getBasket(), user.getQuantities());
     }
 
     public void addInBasket(Product p, int quantity) {
@@ -139,7 +147,7 @@ public class UserManager {
                             .replace("<newsletter><![CDATA[" + user.getNewsletter(), "<newsletter><![CDATA[" + myUserTemp.getNewsletter())
             );
 
-            BufferedReader bufferedReader = null;
+            BufferedReader bufferedReader;
 
             try {
 
@@ -167,7 +175,7 @@ public class UserManager {
                     xmlReturn.append(line);
                 }
 
-                if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                if (httpResponse.getStatusLine().getStatusCode() == CODE_PUT_SUCCESS) {
                     return true;
                 }
 
@@ -236,7 +244,7 @@ public class UserManager {
 
             userBlank = ApiManager.callAPIXML(FluxManager.URL_GET_BLANK_USER);
 
-            if(userBlank != null && !userBlank.equals("")){
+            if (userBlank != null && !userBlank.equals("")) {
                 return true;
             }
 
@@ -250,6 +258,79 @@ public class UserManager {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK USER BLANK"));
             } else {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO USER BLANK"));
+            }
+        }
+    }
+
+    public void createUser() {
+        Utils.execute(new CreateUser());
+    }
+
+    private class CreateUser extends AsyncTask<Object, Object, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Object... params) {
+
+            String userBlankFilled = userBlank.replace("<id_gender></id_gender>", "<id_gender>" + user.getIdGender() + "</id_gender>")
+                    .replace("<birthday></birthday>", "<birthday>" + user.getBirthday() + "</birthday>")
+                    .replace("<lastname></lastname>", "<lastname>" + user.getLastName() + "</lastname>")
+                    .replace("<firstname></firstname>", "<firstname>" + user.getFirstName() + "</firstname>")
+                    .replace("<email></email>", "<email>" + user.getEmail() + "</email>")
+                    .replace("<newsletter></newsletter>", "<newsletter>" + user.getNewsletter() + "</newsletter>")
+                    .replace("<passwd></passwd>", "<passwd>" + user.getMdp() + "</passwd>");
+
+            BufferedReader bufferedReader;
+
+            try {
+
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost();
+                URI uri = new URI(FluxManager.URL_POST_USER);
+
+                httpPost.setURI(uri);
+                httpPost.setHeader("Authorization", "Basic UDg2M1JVQzE3UlVTM1M5VDdOWk05VVAyREJJREhWNlM6");
+                httpPost.setHeader("Content-Type", "raw");
+
+                StringEntity se = new StringEntity(userBlankFilled);
+
+                httpPost.setEntity(se);
+
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+
+
+                InputStream inputStream = httpResponse.getEntity().getContent();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                StringBuilder xmlReturn = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    xmlReturn.append(line);
+                }
+
+                if (httpResponse.getStatusLine().getStatusCode() == CODE_POST_SUCCESS) {
+                    return true;
+                }
+
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                mContext.sendBroadcast(new Intent("CreateSuccess"));
+            } else {
+                mContext.sendBroadcast(new Intent("CreateFail"));
             }
         }
     }
