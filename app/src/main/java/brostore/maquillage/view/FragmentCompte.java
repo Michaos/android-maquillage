@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import brostore.maquillage.R;
@@ -53,31 +56,21 @@ public class FragmentCompte extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ((TextView) rootView.findViewById(R.id.champs)).setText(Html.fromHtml(getString(R.string.champs)));
+        ((TextView) rootView.findViewById(R.id.conf)).setText(Html.fromHtml(getString(R.string.conf)));
+
         rootView.findViewById(R.id.connexion).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                boolean go = true;
-                /*if (((EditText) rootView.findViewById(R.id.email)).getText().toString().trim().equalsIgnoreCase("")) {
-                    ((EditText) rootView.findViewById(R.id.email)).setError("Veuillez renseignez ce champ");
-                    go = false;
-                } else {
-                    ((EditText) rootView.findViewById(R.id.email)).setError(null);
-                }
-
-                if (((EditText) rootView.findViewById(R.id.mdp)).getText().toString().trim().equalsIgnoreCase("")) {
-                    ((EditText) rootView.findViewById(R.id.mdp)).setError("Veuillez renseignez ce champ");
-                    go = false;
-                } else {
-                    ((EditText) rootView.findViewById(R.id.mdp)).setError(null);
-                }*/
-
-                if (go) {
+                //todo remetre le checkform et enlevé le test
+                if (true /*checkForm()*/) {
                     //UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
                     //UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
 
+                    //test
                     UserManager.getInstance(getActivity()).getUser().setEmail("test2@yopmail.com");
                     UserManager.getInstance(getActivity()).getUser().setMdp("test2");
+                    //test
 
                     UserManager.getInstance(getActivity()).goConnect();
 
@@ -86,6 +79,23 @@ public class FragmentCompte extends Fragment {
                 }
             }
         });
+    }
+
+    private boolean checkForm(){
+        if (((EditText) rootView.findViewById(R.id.email)).getText().toString().trim().equalsIgnoreCase("")) {
+            ((EditText) rootView.findViewById(R.id.email)).setError("Veuillez renseignez ce champ");
+            return false;
+        } else {
+            ((EditText) rootView.findViewById(R.id.email)).setError(null);
+        }
+
+        if (((EditText) rootView.findViewById(R.id.mdp)).getText().toString().trim().equalsIgnoreCase("")) {
+            ((EditText) rootView.findViewById(R.id.mdp)).setError("Veuillez renseignez ce champ");
+            return false;
+        } else {
+            ((EditText) rootView.findViewById(R.id.mdp)).setError(null);
+        }
+        return true;
     }
 
     @Override

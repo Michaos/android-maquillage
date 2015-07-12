@@ -17,6 +17,7 @@ public class User {
     private String mdp;
     private String idGender;
     private String birthday;
+    private String[] birthdayCutted;
 
     private ArrayList<Address> listAdress;
 
@@ -72,6 +73,19 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+        birthdayCutted = birthday.split("-");
+    }
+
+    public String getDdnj(){
+        return birthdayCutted[2];
+    }
+
+    public String getDdnm(){
+        return birthdayCutted[1];
+    }
+
+    public String getDdna(){
+        return birthdayCutted[0];
     }
 
     public String getEncryitedMdp() {

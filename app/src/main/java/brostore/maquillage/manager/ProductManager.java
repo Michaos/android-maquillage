@@ -74,7 +74,7 @@ public class ProductManager {
             if (result) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK PRODUCTS" + categoryId));
             } else {
-                // LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO MENU"));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO PRODUCTS" + categoryId));
             }
         }
     }
@@ -93,6 +93,9 @@ public class ProductManager {
             for (int i = base; i < count; i++) {
 
                 JSONObject jsonProduct = ApiManager.callAPI(FluxManager.URL_PRODUCT.replace("__ID__", jsonArray.getJSONObject(i).optString("id", "")));
+                if(jsonProduct == null){
+                    return false;
+                }
                 Product product = new Product(jsonProduct);
 
                 JSONObject jsonPrice = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));

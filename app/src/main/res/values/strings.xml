@@ -12,6 +12,11 @@
     <string name="nom">Nom</string>
     <string name="email">E-mail</string>
     <string name="ddn">Date de naissance : </string>
-    <string name="champs"><![CDATA[<![CDATA[<font color=\"#ff2aad\">*</font> champs obligatoires]]></string>
-
+    <string name="champs"><![CDATA[<font color=\"#ff2aad\">*</font> champs obligatoires]]></string>
+    <string name="conf"><![CDATA[Conformément à la loi Informatique et Libertés du 6 janvier 1978, vous disposez d\'un droit d\'accès, de rectification et de suppression des données vous concernant. Ce droit peut être exercé en écrivant à <font color="#ff2aad">brostore@orange.fr</font>]]></string>
+    <string name="mdp">Mot de passe</string>
+    <string name="connect">Je me connecte</string>
+    <string name="inscript">Je m\'inscris</string>
+    <string name="ou">ou</string>
+    <string name="compte">Compte</string>
 </resources>
