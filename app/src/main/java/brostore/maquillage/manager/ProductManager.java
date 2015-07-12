@@ -172,7 +172,7 @@ public class ProductManager {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String infoProduct = product.getName() + "!" + product.getImageId() + "!" + product.getPrice() + "!" + product.getDescription() + "!" + product.getQuantityId() + "!" + product.getQuantity();
+                String infoProduct = product.getName() + "!" + product.getImageId() + "!" + product.getPrice() + "!" + product.getReducedPrice() + "!" + product.getDescription() + "!" + product.getQuantityId() + "!" + product.getQuantity();
                 SharedPreferences preferences = mContext.getSharedPreferences(favoris, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editeur = preferences.edit();
                 editeur.putString(product.getId() + "", infoProduct);
@@ -219,11 +219,12 @@ public class ProductManager {
             String name = results[0];
             String imageId = results[1];
             String price = results[2];
-            String description = results[3];
-            String quantityId = results[4];
-            String quantity = results[5];
+            String reducedPrice = results[3];
+            String description = results[4];
+            String quantityId = results[5];
+            String quantity = results[6];
 
-            listProductsFavoris.add(new Product(entry.getKey(), name, imageId, price, description, quantityId, quantity));
+            listProductsFavoris.add(new Product(entry.getKey(), name, imageId, price, reducedPrice, description, quantityId, quantity));
         }
     }
 
@@ -231,7 +232,7 @@ public class ProductManager {
         if (listProductsFavoris != null) {
             return listProductsFavoris;
         } else {
-            return new ArrayList<Product>();
+            return new ArrayList<>();
         }
     }
 

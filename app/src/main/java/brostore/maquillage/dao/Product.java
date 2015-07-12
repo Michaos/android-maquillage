@@ -31,11 +31,12 @@ public class Product implements Parcelable {
         }
     }
 
-    public Product(String id, String name, String imageId, String price, String description, String quantityId, String quantity) {
+    public Product(String id, String name, String imageId, String price, String reducedPrice, String description, String quantityId, String quantity) {
         this.id = Integer.parseInt(id);
         this.name = name;
         this.imageId = imageId;
         this.price = Double.parseDouble(price);
+        this.reducedPrice = Double.parseDouble(reducedPrice);
         this.description = description;
         this.quantityId = quantityId;
         this.quantity = quantity;
