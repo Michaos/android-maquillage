@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:orientation="vertical">
 
@@ -196,24 +197,88 @@
                     android:textColor="@color/black" />
             </LinearLayout>
 
+            <CheckBox
+                android:id="@+id/newsletter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/linearLayout1"
+                android:layout_alignRight="@+id/linearLayout1"
+                android:layout_below="@+id/linearLayout1"
+                android:layout_marginTop="10dp"
+                android:button="@drawable/checkbox"
+                android:paddingLeft="10dp"
+                android:text="@string/newsletter" />
+
             <TextView
                 android:id="@+id/champs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayout1"
+                android:layout_below="@+id/newsletter"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/champs" />
+
+            <TextView
+                android:id="@+id/valider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/champs"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:text="@string/valider"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/loadinglayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/valider"
+                android:layout_alignTop="@+id/gender"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/rose"
+                    android:indeterminateTintMode="src_in" />
+
+                <brostore.maquillage.custom.FontTextView
+                    android:id="@+id/chargement"
+                    app:ttfNameTextView="ElleNovaC-Light.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/progress"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="15dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Modification de votre compte en cours..."
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/separator1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/champs"
+                android:layout_below="@+id/valider"
                 android:layout_marginLeft="10dp"
-                android:background="@color/rose_bright"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:background="@color/rose_bright" />
 
             <TextView
                 android:id="@+id/conf"

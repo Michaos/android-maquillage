@@ -18,6 +18,9 @@ public class User {
     private String idGender;
     private String birthday;
     private String[] birthdayCutted;
+    private String newsletter;
+
+    private String userXML;
 
     private ArrayList<Address> listAdress;
 
@@ -29,6 +32,17 @@ public class User {
     public User(){
         basket = new ArrayList<>();
         quantities = new ArrayList<>();
+    }
+
+    public User(User u){
+        id = u.getId();
+        lastName = u.getLastName();
+        firstName = u.getFirstName();
+        email = u.getEmail();
+        mdp = u.getMdp();
+        idGender = u.getIdGender();
+        birthday = u.getBirthday();
+        userXML = u.getUserXML();
     }
 
     public int getId() { return id; }
@@ -88,12 +102,32 @@ public class User {
         return birthdayCutted[0];
     }
 
-    public String getEncryitedMdp() {
+    public String getEncryptedMdp() {
         return Utils.md5(FluxManager.COOKIE_KEY + mdp);
+    }
+
+    public String getMdp() {
+        return mdp;
     }
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public String getUserXML() {
+        return userXML;
+    }
+
+    public void setUserXML(String userXML) {
+        this.userXML = userXML;
+    }
+
+    public String getNewsletter() {
+        return newsletter;
+    }
+
+    public void setNewsletter(String newsletter) {
+        this.newsletter = newsletter;
     }
 
     // BASKET //

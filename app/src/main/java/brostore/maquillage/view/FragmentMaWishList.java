@@ -21,7 +21,7 @@ public class FragmentMaWishList extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.frag_mes_infos, container, false);
+        rootView = inflater.inflate(R.layout.frag_ma_wishlist, container, false);
         return rootView;
     }
 

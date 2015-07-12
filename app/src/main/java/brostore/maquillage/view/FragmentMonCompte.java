@@ -32,32 +32,28 @@ public class FragmentMonCompte extends Fragment {
         rootView.findViewById(R.id.adresses).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentMesAdresses fma = new FragmentMesAdresses();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fma).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_frame, new FragmentMesAdresses()).commit();
             }
         });
 
         rootView.findViewById(R.id.commandes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentMesCommandes fmc = new FragmentMesCommandes();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmc).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_frame, new FragmentMesCommandes()).commit();
             }
         });
 
         rootView.findViewById(R.id.infos).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentMesInfos fmi = new FragmentMesInfos();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmi).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_frame, new FragmentMesInfos()).commit();
             }
         });
 
         rootView.findViewById(R.id.wishlist).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentMaWishList fmw = new FragmentMaWishList();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmw).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_frame, new FragmentMaWishList()).commit();
             }
         });
 

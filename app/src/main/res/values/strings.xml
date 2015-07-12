@@ -19,4 +19,6 @@
     <string name="inscript">Je m\'inscris</string>
     <string name="ou">ou</string>
     <string name="compte">Compte</string>
+    <string name="valider">Valider</string>
+    <string name="newsletter">S\'inscrire à la newsletter</string>
 </resources>

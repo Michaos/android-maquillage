@@ -28,8 +28,7 @@ public class FragmentCompte extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("OK CONNECT")) {
-                FragmentMonCompte fmc = new FragmentMonCompte();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fmc).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentMonCompte()).commit();
             }else if (intent.getAction().equals("KO CONNECT")){
                 Toast.makeText(getActivity(), "E-mail ou Mot de passe incorrecte.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);

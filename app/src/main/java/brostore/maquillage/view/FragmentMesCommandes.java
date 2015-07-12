@@ -21,7 +21,7 @@ public class FragmentMesCommandes extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.frag_mes_infos, container, false);
+        rootView = inflater.inflate(R.layout.frag_mes_commandes, container, false);
         return rootView;
     }
 
