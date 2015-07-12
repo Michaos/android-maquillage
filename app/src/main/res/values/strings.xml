@@ -21,4 +21,6 @@
     <string name="compte">Compte</string>
     <string name="valider">Valider</string>
     <string name="newsletter">S\'inscrire à la newsletter</string>
+    <string name="verifmail">Vérification de l\'adresse mail...</string>
+    <string name="connexion">Connexion à votre compte en cours...</string>
 </resources>

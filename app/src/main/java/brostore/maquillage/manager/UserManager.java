@@ -39,6 +39,7 @@ public class UserManager {
     public Double totalSaving = 0.0;
     private User user;
     private User myUserTemp;
+    private String userBlank;
 
     public static UserManager getInstance(Context context) {
         if (instance == null) {
@@ -86,9 +87,7 @@ public class UserManager {
         @Override
         protected Boolean doInBackground(Object... params) {
 
-            String url = FluxManager.URL_CONNECT.replace("__EMAIL__", user.getEmail()).replace("__ENCRYPTED_MDP__", user.getEncryptedMdp());
-
-            Object o = ApiManager.callAPI(url);
+            Object o = ApiManager.callAPI(FluxManager.URL_CONNECT.replace("__EMAIL__", user.getEmail()).replace("__ENCRYPTED_MDP__", user.getEncryptedMdp()));
             int id;
 
 
@@ -164,14 +163,13 @@ public class UserManager {
 
                 StringBuilder xmlReturn = new StringBuilder();
                 String line;
-                while( (line = bufferedReader.readLine()) != null) {
+                while ((line = bufferedReader.readLine()) != null) {
                     xmlReturn.append(line);
                 }
 
-                if(httpResponse.getStatusLine().getStatusCode() == 200){
+                if (httpResponse.getStatusLine().getStatusCode() == 200) {
                     return true;
                 }
-
 
             } catch (URISyntaxException e) {
                 e.printStackTrace();
@@ -188,13 +186,72 @@ public class UserManager {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            if(result){
+            if (result) {
                 mContext.sendBroadcast(new Intent("EditSuccess"));
                 user = myUserTemp;
-            }else{
+            } else {
                 mContext.sendBroadcast(new Intent("EditFail"));
             }
             super.onPostExecute(result);
         }
     }
+
+    public void checkMail() {
+        Utils.execute(new CheckMail(), user.getEmail());
+    }
+
+    private class CheckMail extends AsyncTask<String, Object, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+
+            Object o = ApiManager.callAPI(FluxManager.URL_CHECK_MAIL.replace("__MAIL__", params[0]));
+
+            if (o == null) {
+                return true;
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("MAIL DISPONIBLE"));
+            } else {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("MAIL INDISPONIBLE"));
+            }
+        }
+    }
+
+    public void getUserBlank() {
+        Utils.execute(new UserBlank());
+    }
+
+    private class UserBlank extends AsyncTask<String, Object, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+
+            userBlank = ApiManager.callAPIXML(FluxManager.URL_GET_BLANK_USER);
+
+            if(userBlank != null && !userBlank.equals("")){
+                return true;
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK USER BLANK"));
+            } else {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO USER BLANK"));
+            }
+        }
+    }
+
 }

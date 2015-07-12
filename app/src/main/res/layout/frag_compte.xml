@@ -163,7 +163,7 @@
                 android:layout_margin="15dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Connexion à votre compte en cours..."
+                android:text="@string/connexion"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:ttfNameTextView="ElleNovaC-Light.otf" />

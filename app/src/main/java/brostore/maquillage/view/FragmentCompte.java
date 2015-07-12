@@ -32,6 +32,16 @@ public class FragmentCompte extends Fragment {
             }else if (intent.getAction().equals("KO CONNECT")){
                 Toast.makeText(getActivity(), "E-mail ou Mot de passe incorrecte.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
+            }else if(intent.getAction().equals("MAIL DISPONIBLE")){
+                UserManager.getInstance(getActivity()).getUserBlank();
+            }else if(intent.getAction().equals("MAIL INDISPONIBLE")){
+                ((EditText) rootView.findViewById(R.id.email)).setError("Cet E-mail est déja utilisé.");
+                rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
+            }else if(intent.getAction().equals("OK USER BLANK")){
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentInscription()).commit();
+            }else if(intent.getAction().equals("KO USER BLANK")){
+                Toast.makeText(getActivity(), "Erreur lors de la récupération du formulaire. Veuillez réessayer.", Toast.LENGTH_LONG).show();
+                rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
             }
         }
     };
@@ -46,6 +56,10 @@ public class FragmentCompte extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK CONNECT");
         filter.addAction("KO CONNECT");
+        filter.addAction("MAIL DISPONIBLE");
+        filter.addAction("MAIL INDISPONIBLE");
+        filter.addAction("OK USER BLANK");
+        filter.addAction("KO USER BLANK");
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
         return rootView;
@@ -74,10 +88,29 @@ public class FragmentCompte extends Fragment {
                     UserManager.getInstance(getActivity()).goConnect();
 
                     rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
+                    ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.connexion);
 
                 }
             }
         });
+
+        rootView.findViewById(R.id.inscription).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkForm()) {
+                    UserManager.getInstance(getActivity()).getUser().setEmail(((EditText) rootView.findViewById(R.id.email)).getText().toString());
+                    UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
+
+                    UserManager.getInstance(getActivity()).checkMail();
+
+                    rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
+                    ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.verifmail);
+
+                }
+            }
+        });
+
+
     }
 
     private boolean checkForm(){
