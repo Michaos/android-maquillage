@@ -2,6 +2,7 @@ package brostore.maquillage.wrapper;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import brostore.maquillage.R;
@@ -14,9 +15,8 @@ public class BasketWrapper {
     private View baseView;
     private ImageView image;
     private TextView name;
-    private TextView prix;
-    private TextView quantity;
-    private TextView prixTotal;
+    private Spinner quantitySpinner;
+    private TextView totalPrice;
 
     public BasketWrapper(View base) {
         this.baseView = base;
@@ -33,32 +33,25 @@ public class BasketWrapper {
         return (image);
     }
 
-    public TextView getArticleNom() {
+    public TextView getArticleName() {
         if (name == null) {
-            name = (TextView) baseView.findViewById(R.id.article_nom);
+            name = (TextView) baseView.findViewById(R.id.article_name);
         }
         return (name);
     }
 
-    public TextView getArticlePrix() {
-        if (prix == null) {
-            prix = (TextView) baseView.findViewById(R.id.article_prix);
+    public Spinner getArticleQuantitySpinner() {
+        if (quantitySpinner == null) {
+            quantitySpinner = (Spinner) baseView.findViewById(R.id.article_quantity_spinner);
         }
-        return (prix);
+        return(quantitySpinner);
     }
 
-    public TextView getArticleQuantity() {
-        if (quantity == null) {
-            quantity = (TextView) baseView.findViewById(R.id.article_quantity);
+    public TextView getArticleTotalPrice() {
+        if (totalPrice == null) {
+            totalPrice = (TextView) baseView.findViewById(R.id.article_total_price);
         }
-        return (quantity);
-    }
-
-    public TextView getArticlePrixTotal() {
-        if (prixTotal == null) {
-            prixTotal = (TextView) baseView.findViewById(R.id.article_prix_total);
-        }
-        return (prixTotal);
+        return (totalPrice);
     }
 
 }

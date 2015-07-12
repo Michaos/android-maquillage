@@ -4,16 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.dao.User;
 import brostore.maquillage.wrapper.BasketWrapper;
 
-public class BasketAdapterRight extends BaseAdapter {
+public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnItemSelectedListener{
 
     private LayoutInflater inflater;
     private Context mContext;
@@ -61,12 +65,41 @@ public class BasketAdapterRight extends BaseAdapter {
         } else {
             wrapper.getArticleImage().setImageBitmap(p.getBitmapImage());
         }
-        wrapper.getArticleNom().setText(p.getName());
-        wrapper.getArticlePrix().setText(String.format("%.2f", p.getReducedPrice()) + "€");
-        wrapper.getArticleQuantity().setText("Qté : " + myQuantities.get(position));
-        double prixTotal = p.getReducedPrice() * myQuantities.get(position);
-        wrapper.getArticlePrixTotal().setText("Total : " + String.format("%.2f", prixTotal) + "€");
+        wrapper.getArticleName().setText(p.getName());
+
+        setQuantitySpinner();
+        wrapper.getArticleQuantitySpinner().setSelection(myQuantities.get(position));
+
+        double totalPrice = p.getReducedPrice() * myQuantities.get(position);
+        wrapper.getArticleTotalPrice().setText(String.format("%.2f", totalPrice)+"€");
 
         return row;
+    }
+
+    public void setQuantitySpinner() {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i <= 10; i++) {
+            list.add(i+"");
+        }
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(mContext,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        wrapper.getArticleQuantitySpinner().setAdapter(dataAdapter);
+        wrapper.getArticleQuantitySpinner().setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //TODO get position of the product !!
+        int productPosition = 0;
+        myQuantities.set(productPosition, position);
+        System.out.println("AAAA B - all is ok right here");
+        //this.notifyDataSetChanged();
+        System.out.println("AAAA B - after notifyDataSetChanged...");
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
