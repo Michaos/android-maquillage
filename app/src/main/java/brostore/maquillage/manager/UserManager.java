@@ -229,10 +229,10 @@ public class UserManager {
         Utils.execute(new UserBlank());
     }
 
-    private class UserBlank extends AsyncTask<String, Object, Boolean> {
+    private class UserBlank extends AsyncTask<Object, Object, Boolean> {
 
         @Override
-        protected Boolean doInBackground(String... params) {
+        protected Boolean doInBackground(Object... params) {
 
             userBlank = ApiManager.callAPIXML(FluxManager.URL_GET_BLANK_USER);
 

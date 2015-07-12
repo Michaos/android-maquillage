@@ -63,7 +63,7 @@
                 android:background="@drawable/edittext"
                 android:ems="10"
                 android:hint="@string/mdp"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/black" />
