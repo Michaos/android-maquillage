@@ -23,6 +23,7 @@ public class User {
     private String userXML;
 
     private ArrayList<Address> listAdress;
+    private ArrayList<Order> listOrder;
 
     private ArrayList<Product> basket;
     private ArrayList<Integer> quantities;
@@ -149,6 +150,22 @@ public class User {
 
     public void setNewsletter(String newsletter) {
         this.newsletter = newsletter;
+    }
+
+    public ArrayList<Address> getListAdress() {
+        return listAdress;
+    }
+
+    public void setListAdress(ArrayList<Address> listAdress) {
+        this.listAdress = listAdress;
+    }
+
+    public ArrayList<Order> getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(ArrayList<Order> listOrder) {
+        this.listOrder = listOrder;
     }
 
     // BASKET //

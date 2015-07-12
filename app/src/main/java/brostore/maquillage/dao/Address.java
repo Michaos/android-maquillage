@@ -1,5 +1,7 @@
 package brostore.maquillage.dao;
 
+import org.json.JSONObject;
+
 /**
  * Created by Michaos on 11/07/2015.
  */
@@ -17,8 +19,18 @@ public class Address {
     private String phone;
     private String phoneMobile;
 
-    public Address(){
-
+    public Address(JSONObject jsonObject) {
+        id = jsonObject.optInt("id");
+        alias = jsonObject.optString("alias");
+        company = jsonObject.optString("company");
+        vatNumber = jsonObject.optString("vatNumber");
+        address1 = jsonObject.optString("address1");
+        address2 = jsonObject.optString("address2");
+        postcode = jsonObject.optString("postcode");
+        city = jsonObject.optString("city");
+        other = jsonObject.optString("other");
+        phone = jsonObject.optString("phone");
+        phoneMobile = jsonObject.optString("phoneMobile");
     }
 
     public int getId() {

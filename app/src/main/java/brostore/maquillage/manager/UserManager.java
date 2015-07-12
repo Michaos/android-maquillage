@@ -95,9 +95,9 @@ public class UserManager {
         @Override
         protected Boolean doInBackground(Object... params) {
 
-            Object o = ApiManager.callAPI(FluxManager.URL_CONNECT.replace("__EMAIL__", user.getEmail()).replace("__ENCRYPTED_MDP__", user.getEncryptedMdp()));
             int id;
 
+            Object o = ApiManager.callAPI(FluxManager.URL_CONNECT.replace("__EMAIL__", user.getEmail()).replace("__ENCRYPTED_MDP__", user.getEncryptedMdp()));
 
             if (o == null) {
                 return false;

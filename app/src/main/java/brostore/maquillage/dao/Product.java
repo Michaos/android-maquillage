@@ -8,15 +8,19 @@ import org.json.JSONObject;
 
 public class Product implements Parcelable {
 
-    int id;
-    String quantityId;
-    String quantity;
-    double price;
-    double reducedPrice;
-    String name;
-    String description;
-    String imageId;
-    Bitmap bitmapImage;
+    private int id;
+    private String quantityId;
+    private String quantity;
+    private double price;
+    private double reducedPrice;
+    private String name;
+    private String description;
+    private String imageId;
+    private Bitmap bitmapImage;
+
+    public Product() {
+
+    }
 
     public Product(JSONObject jsonProduct) {
         id = jsonProduct.optJSONObject("product").optInt("id");

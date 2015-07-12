@@ -50,7 +50,6 @@ public class FragmentMaWishList extends Fragment {
                 Intent intent = new Intent(getActivity(), ProductActivity.class);
                 intent.putExtra("product", ProductManager.getInstance(getActivity()).getListProductsFavoris().get(i));
                 startActivity(intent);
-
             }
         });
     }
