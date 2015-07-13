@@ -26,7 +26,7 @@ public class HideMenuItem implements Serializable {
         id = j.optJSONObject("category").optInt("id");
         titre = j.optJSONObject("category").optString("name");
 
-        if(j.optJSONObject("category").optJSONObject("associations") != null) {
+        if (j.optJSONObject("category").optJSONObject("associations") != null) {
 
             JSONArray jsonArray = j.optJSONObject("category").optJSONObject("associations").optJSONArray("categories");
 
@@ -35,11 +35,11 @@ public class HideMenuItem implements Serializable {
                 itemsSousMenu = new ArrayList<>();
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    if(from == 1){
+                    if (from == 1) {
                         itemsSousMenu.add(MenuManager.getInstance(mContext).parseMenuBisFromRaw(jsonArray.optJSONObject(i)));
-                    }else if (from == 2){
+                    } else if (from == 2) {
                         itemsSousMenu.add(MenuManager.getInstance(mContext).parseMenuBisFromCache(jsonArray.optJSONObject(i)));
-                    }else{
+                    } else {
                         itemsSousMenu.add(MenuManager.getInstance(mContext).parseMenuBis(jsonArray.optJSONObject(i)));
                     }
                 }

@@ -93,7 +93,7 @@ public class ProductManager {
             for (int i = base; i < count; i++) {
 
                 JSONObject jsonProduct = ApiManager.callAPI(FluxManager.URL_PRODUCT.replace("__ID__", jsonArray.getJSONObject(i).optString("id", "")));
-                if(jsonProduct == null){
+                if (jsonProduct == null) {
                     return false;
                 }
                 Product product = new Product(jsonProduct);

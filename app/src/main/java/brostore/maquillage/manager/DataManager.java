@@ -45,7 +45,7 @@ public class DataManager {
         }
     }
 
-    public void callImgAPI(ImageView iv, String url, Product p){
+    public void callImgAPI(ImageView iv, String url, Product p) {
         Utils.execute(new DownloadTask(iv, p), url);
     }
 
@@ -55,7 +55,7 @@ public class DataManager {
         private ImageView imageView;
         private Product product;
 
-        public DownloadTask(ImageView iv, Product p){
+        public DownloadTask(ImageView iv, Product p) {
             imageView = iv;
             product = p;
         }
@@ -63,7 +63,7 @@ public class DataManager {
         @Override
         protected Boolean doInBackground(String... strings) {
 
-            try{
+            try {
                 URL url = new URL(strings[0]);
                 String username = FluxManager.API_KEY;
                 String authToBytes = username + ":";
@@ -81,7 +81,7 @@ public class DataManager {
 
                 return true;
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return false;
@@ -89,13 +89,12 @@ public class DataManager {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            if(result){
+            if (result) {
                 imageView.setImageBitmap(bitmap);
                 product.setBitmapImage(bitmap);
             }
         }
     }
-
 
 
 }

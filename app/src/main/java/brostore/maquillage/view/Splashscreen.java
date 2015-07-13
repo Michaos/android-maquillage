@@ -22,7 +22,7 @@ public class Splashscreen extends Activity {
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(MenuManager.OK_MENU_CACHE_OR_RAW) || intent.getAction().equals(MenuManager.OK_MENU)){
+            if (intent.getAction().equals(MenuManager.OK_MENU_CACHE_OR_RAW) || intent.getAction().equals(MenuManager.OK_MENU)) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
@@ -50,11 +50,11 @@ public class Splashscreen extends Activity {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    private void popupInternet(){
+    private void popupInternet() {
 
-        if(isOnline()){
+        if (isOnline()) {
             MenuManager.getInstance(this).initMenuTask();
-        }else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Maquillage.fr");
             builder.setMessage("Une connection à internet est recquise. Veuillez vérifier votre connection puis réessayez.")

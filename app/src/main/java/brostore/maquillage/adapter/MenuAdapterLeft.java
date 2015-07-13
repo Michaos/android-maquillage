@@ -71,7 +71,7 @@ public class MenuAdapterLeft implements ExpandableListAdapter, Serializable {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        if(itemsMenu.get(groupPosition).getItemsSousMenu() == null){
+        if (itemsMenu.get(groupPosition).getItemsSousMenu() == null) {
             return 0;
         }
         return itemsMenu.get(groupPosition).getItemsSousMenu().size();

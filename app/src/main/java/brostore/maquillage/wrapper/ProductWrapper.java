@@ -8,21 +8,21 @@ import brostore.maquillage.R;
 
 public class ProductWrapper {
 
-	private View baseView;
-	private ImageView image;
+    private View baseView;
+    private ImageView image;
     private TextView name;
     private TextView infos;
     private TextView prix1;
     private TextView prix2;
 
 
-	public ProductWrapper(View base) {
-		this.baseView = base;
-	}
-	
-	public View getBaseView() {
-		return baseView;
-	}
+    public ProductWrapper(View base) {
+        this.baseView = base;
+    }
+
+    public View getBaseView() {
+        return baseView;
+    }
 
     public ImageView getArticleImage() {
         if (image == null) {
@@ -32,7 +32,7 @@ public class ProductWrapper {
     }
 
     public TextView getArticleNom() {
-        if (name== null) {
+        if (name == null) {
             name = (TextView) baseView.findViewById(R.id.article_nom);
         }
         return (name);
@@ -58,7 +58,6 @@ public class ProductWrapper {
         }
         return (prix2);
     }
-
 
 
 }

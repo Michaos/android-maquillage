@@ -8,27 +8,27 @@ import java.util.List;
 
 public class HomePagerAdapter extends FragmentPagerAdapter {
 
-	private List<Fragment> list;
-	
-	public HomePagerAdapter(FragmentManager fm, List<Fragment> listFrag) {
-		super(fm);
-		list = listFrag;
-	}
+    private List<Fragment> list;
 
-	@Override
-	public CharSequence getPageTitle(int position) {
-		String title = list.get(position).getArguments().getString("title");
-		return title;
-	}
+    public HomePagerAdapter(FragmentManager fm, List<Fragment> listFrag) {
+        super(fm);
+        list = listFrag;
+    }
 
-	@Override
-	public int getCount() {
-		return list.size();
-	}
+    @Override
+    public CharSequence getPageTitle(int position) {
+        String title = list.get(position).getArguments().getString("title");
+        return title;
+    }
 
-	@Override
-	public Fragment getItem(int position) {
-		return list.get(position);
-	}
+    @Override
+    public int getCount() {
+        return list.size();
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return list.get(position);
+    }
 
 }

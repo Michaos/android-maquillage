@@ -30,7 +30,7 @@ public class Product implements Parcelable {
         quantityId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("stock_availables").optJSONObject(0).optString("id");
         try {
             imageId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("images").optJSONObject(0).optString("id");
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -94,9 +94,13 @@ public class Product implements Parcelable {
         this.quantity = quantity;
     }
 
-    public Double getPrice() { return price; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public Double getReducedPrice() { return reducedPrice; }
+    public Double getReducedPrice() {
+        return reducedPrice;
+    }
 
     public String getName() {
         return name;
@@ -130,7 +134,9 @@ public class Product implements Parcelable {
         this.bitmapImage = bitmap;
     }
 
-    public void calculReducedPrice(Double reduction) { this.reducedPrice = price - reduction; }
+    public void calculReducedPrice(Double reduction) {
+        this.reducedPrice = price - reduction;
+    }
 
     public boolean noReduc() {
         return getPrice() == getReducedPrice();

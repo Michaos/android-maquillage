@@ -16,7 +16,7 @@ public class FragmentMonCompte extends Fragment {
 
     private View rootView;
 
-    public FragmentMonCompte(){
+    public FragmentMonCompte() {
     }
 
     @Override

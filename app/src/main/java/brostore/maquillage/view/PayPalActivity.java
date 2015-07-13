@@ -1,5 +1,13 @@
 package brostore.maquillage.view;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -13,14 +21,6 @@ import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.paypal.android.sdk.payments.ShippingAddress;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 import org.json.JSONException;
 
 import java.math.BigDecimal;
@@ -32,7 +32,7 @@ import brostore.maquillage.R;
 
 /**
  * Basic sample using the SDK to make a payment or consent to future payments.
- * 
+ * <p/>
  * For sample mobile backend interactions, see
  * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
  */
@@ -40,10 +40,10 @@ public class PayPalActivity extends Activity {
     private static final String TAG = "paymentExample";
     /**
      * - Set to PayPalConfiguration.ENVIRONMENT_PRODUCTION to move real money.
-     * 
+     * <p/>
      * - Set to PayPalConfiguration.ENVIRONMENT_SANDBOX to use your test credentials
      * from https://developer.paypal.com
-     * 
+     * <p/>
      * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires
      * without communicating to PayPal's servers.
      */
@@ -59,7 +59,7 @@ public class PayPalActivity extends Activity {
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(CONFIG_ENVIRONMENT)
             .clientId(CONFIG_CLIENT_ID)
-            // The following are only used in PayPalFuturePaymentActivity.
+                    // The following are only used in PayPalFuturePaymentActivity.
             .merchantName("Example Merchant")
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
@@ -99,26 +99,26 @@ public class PayPalActivity extends Activity {
 
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
     }
-    
+
     private PayPalPayment getThingToBuy(String paymentIntent) {
         return new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
                 paymentIntent);
     }
-    
+
     /* 
      * This method shows use of optional payment details and item list.
      */
     private PayPalPayment getStuffToBuy(String paymentIntent) {
         //--- include an item list, payment amount details
         PayPalItem[] items =
-            {
-                    new PayPalItem("sample item #1", 2, new BigDecimal("87.50"), "USD",
-                            "sku-12345678"),
-                    new PayPalItem("free sample item #2", 1, new BigDecimal("0.00"),
-                            "USD", "sku-zero-price"),
-                    new PayPalItem("sample item #3 with a longer name", 6, new BigDecimal("37.99"),
-                            "USD", "sku-33333") 
-            };
+                {
+                        new PayPalItem("sample item #1", 2, new BigDecimal("87.50"), "USD",
+                                "sku-12345678"),
+                        new PayPalItem("free sample item #2", 1, new BigDecimal("0.00"),
+                                "USD", "sku-zero-price"),
+                        new PayPalItem("sample item #3 with a longer name", 6, new BigDecimal("37.99"),
+                                "USD", "sku-33333")
+                };
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
         BigDecimal shipping = new BigDecimal("7.21");
         BigDecimal tax = new BigDecimal("4.67");
@@ -132,7 +132,7 @@ public class PayPalActivity extends Activity {
 
         return payment;
     }
-    
+
     /*
      * Add app-provided shipping address to payment
      */
@@ -142,7 +142,7 @@ public class PayPalActivity extends Activity {
                         .city("Austin").state("TX").postalCode("78729").countryCode("US");
         paypalPayment.providedShippingAddress(shippingAddress);
     }
-    
+
     /*
      * Enable retrieval of shipping addresses from buyer's PayPal account
      */
@@ -176,7 +176,7 @@ public class PayPalActivity extends Activity {
          * attributes you select for this app in the PayPal developer portal and the scopes required here.
          */
         Set<String> scopes = new HashSet<String>(
-                Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS) );
+                Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS));
         return new PayPalOAuthScopes(scopes);
     }
 
@@ -242,7 +242,7 @@ public class PayPalActivity extends Activity {
                 Log.i(
                         "FuturePaymentExample",
                         "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
-            } 
+            }
         } else if (requestCode == REQUEST_CODE_PROFILE_SHARING) {
             if (resultCode == Activity.RESULT_OK) {
                 PayPalAuthorization auth =
@@ -279,10 +279,10 @@ public class PayPalActivity extends Activity {
         /**
          * TODO: Send the authorization response to your server, where it can
          * exchange the authorization code for OAuth access and refresh tokens.
-         * 
+         *
          * Your server must then store these tokens, so that your server code
          * can execute payments for this user in the future.
-         * 
+         *
          * A more complete example that includes the required app-server to
          * PayPal-server integration is available from
          * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend

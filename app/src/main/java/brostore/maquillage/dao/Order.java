@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Order {
 
     private int id;
-    private String adressId;
     private String shipping_number;
     private String payment;
     private String total_discounts;
@@ -20,7 +19,6 @@ public class Order {
 
     public Order(JSONObject jsonObject) {
         id = jsonObject.optInt("id");
-        adressId = jsonObject.optString("adressId");
         shipping_number = jsonObject.optString("shipping_number");
         payment = jsonObject.optString("payment");
         total_discounts = jsonObject.optString("total_discounts");
@@ -39,14 +37,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAdressId() {
-        return adressId;
-    }
-
-    public void setAdressId(String adressId) {
-        this.adressId = adressId;
     }
 
     public String getShipping_number() {

@@ -96,7 +96,7 @@ public class MenuManager {
             JSONArray jsonMenuLeft = json.getJSONObject("category").getJSONObject("associations").getJSONArray("categories");
             for (int i = 0; i < jsonMenuLeft.length(); i++) {
                 JSONObject cat = ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", jsonMenuLeft.getJSONObject(i).optString("id", "")));
-                if(cat != null){
+                if (cat != null) {
                     CacheManager.createCache(json, FluxManager.DIR_DATA, "Categorie::" + jsonMenuLeft.getJSONObject(i).optString("id", ""));
                 }
                 HideMenuItem hmi = new HideMenuItem(mContext, cat, 3);
@@ -113,7 +113,7 @@ public class MenuManager {
 
     public synchronized HideMenuItem parseMenuBis(JSONObject json) {
         JSONObject cat = ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", json.optString("id", "")));
-        if(cat != null){
+        if (cat != null) {
             CacheManager.createCache(json, FluxManager.DIR_DATA, "Categorie::" + json.optString("id", ""));
         }
         HideMenuItem hmi = new HideMenuItem(mContext, cat, 3);
@@ -125,7 +125,7 @@ public class MenuManager {
         try {
             JSONArray jsonMenuLeft = json.getJSONObject("category").getJSONObject("associations").getJSONArray("categories");
             for (int i = 0; i < jsonMenuLeft.length(); i++) {
-                JSONObject cat = CacheManager.loadCache(FluxManager.DIR_DATA, "Categorie::"+jsonMenuLeft.getJSONObject(i).optString("id", ""));
+                JSONObject cat = CacheManager.loadCache(FluxManager.DIR_DATA, "Categorie::" + jsonMenuLeft.getJSONObject(i).optString("id", ""));
                 HideMenuItem hmi = new HideMenuItem(mContext, cat, 2);
                 itemsMenuLeftTemp.add(hmi);
             }
@@ -133,7 +133,7 @@ public class MenuManager {
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return false;
         }

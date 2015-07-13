@@ -1,7 +1,9 @@
 package brostore.maquillage.manager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.content.LocalBroadcastManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +33,7 @@ public class OrderManager {
         return instance;
     }
 
-    public void getUserOrders(){
+    public void getUserOrders() {
         Utils.execute(new GetUserOrders());
     }
 
@@ -40,7 +42,7 @@ public class OrderManager {
         @Override
         protected Boolean doInBackground(Object... params) {
 
-            Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ORDERS.replace("__ID__", UserManager.getInstance(mContext).getUser().getId()+""));
+            Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ORDERS.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
             if (o == null) {
                 return false;
@@ -49,19 +51,23 @@ public class OrderManager {
             JSONArray jsonListOrder = ((JSONObject) o).optJSONArray("addresses");
 
             for (int i = 0; i < jsonListOrder.length(); i++) {
-                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADRESS.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id")+""));
+                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADRESS.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
                 listOrders.add(new Order(jsonObject));
             }
             return true;
         }
 
         @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            super.onPostExecute(aBoolean);
+        public void onPostExecute(Boolean result) {
+            if (result) {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK ORDERS"));
+            } else {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO ORDERS"));
+            }
         }
     }
 
-    public ArrayList<Order> getListOrders(){
+    public ArrayList<Order> getListOrders() {
         return listOrders;
     }
 

@@ -12,7 +12,6 @@ import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.manager.DataManager;
 import brostore.maquillage.manager.FluxManager;
-import brostore.maquillage.utils.Utils;
 import brostore.maquillage.wrapper.ProductWrapper;
 
 public class ProductAdapter extends BaseAdapter {
@@ -59,17 +58,17 @@ public class ProductAdapter extends BaseAdapter {
 
         wrapper.getArticleImage().setImageResource(R.drawable.maquillage);
 
-        if(product.getBitmapImage() != null){
+        if (product.getBitmapImage() != null) {
             wrapper.getArticleImage().setImageBitmap(product.getBitmapImage());
-        } else if(product.getImageId() != null){
-            String myUrl = FluxManager.URL_IMAGES.replace("__ID_PRODUCT__", product.getId()+"").replace("__ID_IMAGE__" , product.getImageId());
+        } else if (product.getImageId() != null) {
+            String myUrl = FluxManager.URL_IMAGES.replace("__ID_PRODUCT__", product.getId() + "").replace("__ID_IMAGE__", product.getImageId());
             DataManager.getInstance(mContext).callImgAPI(wrapper.getArticleImage(), myUrl, product);
         }
 
         wrapper.getArticleNom().setText(product.getName());
         //wrapper.getArticleInfos().setText(Html.fromHtml(product.getDescription()));
 
-        if(product.noReduc()){
+        if (product.noReduc()) {
             wrapper.getArticlePrix2().setVisibility(View.GONE);
         }
 

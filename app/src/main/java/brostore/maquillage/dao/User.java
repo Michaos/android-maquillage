@@ -22,7 +22,7 @@ public class User {
 
     private String userXML;
 
-    private ArrayList<Address> listAdress;
+    private ArrayList<Address> listAddress;
     private ArrayList<Order> listOrder;
 
     private ArrayList<Product> basket;
@@ -92,7 +92,7 @@ public class User {
     }
 
     public String getBirthday() {
-        if(birthday.equals("--")){
+        if (birthday.equals("--")) {
             return "";
         }
         return birthday;
@@ -104,21 +104,21 @@ public class User {
     }
 
     public String getDdnj() {
-        if(birthdayCutted.length == 0){
+        if (birthdayCutted.length == 0) {
             return "";
         }
         return birthdayCutted[2];
     }
 
     public String getDdnm() {
-        if(birthdayCutted.length == 0){
+        if (birthdayCutted.length == 0) {
             return "";
         }
         return birthdayCutted[1];
     }
 
     public String getDdna() {
-        if(birthdayCutted.length == 0){
+        if (birthdayCutted.length == 0) {
             return "";
         }
         return birthdayCutted[0];
@@ -152,12 +152,12 @@ public class User {
         this.newsletter = newsletter;
     }
 
-    public ArrayList<Address> getListAdress() {
-        return listAdress;
+    public ArrayList<Address> getListAddress() {
+        return listAddress;
     }
 
-    public void setListAdress(ArrayList<Address> listAdress) {
-        this.listAdress = listAdress;
+    public void setListAddress(ArrayList<Address> listAddress) {
+        this.listAddress = listAddress;
     }
 
     public ArrayList<Order> getListOrder() {

@@ -31,16 +31,16 @@ public class FragmentListProducts extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("OK PRODUCTS" + id)) {
-                if (needInit){
+                if (needInit) {
                     init();
-                }else{
+                } else {
                     base += ProductManager.MAX;
                     footerView.findViewById(R.id.loadinglayoutfooter).setVisibility(View.INVISIBLE);
                     footerView.findViewById(R.id.txt).setVisibility(View.VISIBLE);
                     adapter.notifyDataSetChanged();
                 }
-            }else if (intent.getAction().equals("KO PRODUCTS" + id)) {
-                ((LinearLayout)getView().findViewById(R.id.loadinglayout)).removeAllViews();
+            } else if (intent.getAction().equals("KO PRODUCTS" + id)) {
+                ((LinearLayout) getView().findViewById(R.id.loadinglayout)).removeAllViews();
                 getView().findViewById(R.id.loadinglayout).setBackgroundResource(R.drawable.maquillage);
                 Toast.makeText(getActivity(), "Une erreur s'est produite lors de la connexion avec le site maquillage.fr Veuillez réessayer ultèrieurement.", Toast.LENGTH_LONG).show();
             }
@@ -79,9 +79,9 @@ public class FragmentListProducts extends Fragment {
 
         base = ProductManager.getInstance(getActivity()).getList(id + "").size();
 
-        if (base > 0){
+        if (base > 0) {
             init();
-        }else{
+        } else {
             ProductManager.getInstance(getActivity()).getProductsForCategory(id, base);
         }
 

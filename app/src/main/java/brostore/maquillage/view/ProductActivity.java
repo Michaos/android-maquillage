@@ -35,11 +35,11 @@ public class ProductActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("OK QUANTITY")) {
                 quantityAvailable = Integer.parseInt(ProductManager.getInstance(getApplicationContext()).quantity);
-                if(quantityAvailable > 10){
+                if (quantityAvailable > 10) {
                     inStock(false);
-                }else if(quantityAvailable == 0) {
+                } else if (quantityAvailable == 0) {
                     outOfStock();
-                }else{
+                } else {
                     inStock(true);
                 }
             }
@@ -67,23 +67,23 @@ public class ProductActivity extends Activity {
 
     }
 
-    private void init(){
+    private void init() {
 
-        if(myProduct.getBitmapImage() == null){
-            ((ImageView)findViewById(R.id.article_image)).setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.maquillage));
-        }else{
-            ((ImageView)findViewById(R.id.article_image)).setImageBitmap(myProduct.getBitmapImage());
+        if (myProduct.getBitmapImage() == null) {
+            ((ImageView) findViewById(R.id.article_image)).setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.maquillage));
+        } else {
+            ((ImageView) findViewById(R.id.article_image)).setImageBitmap(myProduct.getBitmapImage());
         }
 
-        ((TextView)findViewById(R.id.article_nom)).setText(myProduct.getName());
-        ((TextView)findViewById(R.id.article_infos)).setText(Html.fromHtml(myProduct.getDescription()));
-        ((TextView)findViewById(R.id.article_prix1)).setText(" " + String.format("%.2f", myProduct.getPrice()) + "€ ");
-        ((TextView)findViewById(R.id.article_prix1)).getPaint().setStrikeThruText(true);
-        ((TextView)findViewById(R.id.article_prix2)).setText(String.format("%.2f", myProduct.getReducedPrice()) + "€");
+        ((TextView) findViewById(R.id.article_nom)).setText(myProduct.getName());
+        ((TextView) findViewById(R.id.article_infos)).setText(Html.fromHtml(myProduct.getDescription()));
+        ((TextView) findViewById(R.id.article_prix1)).setText(" " + String.format("%.2f", myProduct.getPrice()) + "€ ");
+        ((TextView) findViewById(R.id.article_prix1)).getPaint().setStrikeThruText(true);
+        ((TextView) findViewById(R.id.article_prix2)).setText(String.format("%.2f", myProduct.getReducedPrice()) + "€");
 
         isFavorite = ProductManager.getInstance(this).isProductFavoris(myProduct.getId());
 
-        if(isFavorite){
+        if (isFavorite) {
             ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_black_48dp);
         }
 
@@ -95,27 +95,27 @@ public class ProductActivity extends Activity {
         });
     }
 
-    private void switchFavoriteStatus(){
+    private void switchFavoriteStatus() {
         isFavorite = !isFavorite;
-        if(isFavorite){
+        if (isFavorite) {
             ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_black_48dp);
             ProductManager.getInstance(this).saveProductFavoris(myProduct);
-        }else{
+        } else {
             ((ImageView) findViewById(R.id.like)).setImageResource(R.drawable.ic_favorite_border_black_48dp);
             ProductManager.getInstance(this).deleteProductFavoris(myProduct);
         }
     }
 
-    private void inStock(boolean rare){
+    private void inStock(boolean rare) {
 
         findViewById(R.id.stock_loading).setVisibility(View.GONE);
 
-        if(rare){
-            ((TextView)findViewById(R.id.stock)).setText("o Derniers");
-            ((TextView)findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.orange_rare_stock));
-        }else{
-            ((TextView)findViewById(R.id.stock)).setText("o Disponible");
-            ((TextView)findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.green_en_stock));
+        if (rare) {
+            ((TextView) findViewById(R.id.stock)).setText("o Derniers");
+            ((TextView) findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.orange_rare_stock));
+        } else {
+            ((TextView) findViewById(R.id.stock)).setText("o Disponible");
+            ((TextView) findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.green_en_stock));
         }
 
         findViewById(R.id.ajout_panier).setBackgroundDrawable(getResources().getDrawable(R.drawable.button));
@@ -135,12 +135,12 @@ public class ProductActivity extends Activity {
         });
     }
 
-    private void outOfStock(){
+    private void outOfStock() {
 
         findViewById(R.id.stock_loading).setVisibility(View.GONE);
 
-        ((TextView)findViewById(R.id.stock)).setText("o Indisponible");
-        ((TextView)findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.rouge_rupture_stock));
+        ((TextView) findViewById(R.id.stock)).setText("o Indisponible");
+        ((TextView) findViewById(R.id.stock)).setTextColor(getResources().getColor(R.color.rouge_rupture_stock));
 
         findViewById(R.id.ajout_panier).setOnClickListener(new View.OnClickListener() {
             @Override

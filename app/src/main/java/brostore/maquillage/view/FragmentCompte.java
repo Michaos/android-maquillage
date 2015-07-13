@@ -27,17 +27,17 @@ public class FragmentCompte extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("OK CONNECT")) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentMonCompte()).commit();
-            }else if (intent.getAction().equals("KO CONNECT")){
+            } else if (intent.getAction().equals("KO CONNECT")) {
                 Toast.makeText(getActivity(), "E-mail ou Mot de passe incorrecte.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
-            }else if(intent.getAction().equals("MAIL DISPONIBLE")){
+            } else if (intent.getAction().equals("MAIL DISPONIBLE")) {
                 UserManager.getInstance(getActivity()).getUserBlank();
-            }else if(intent.getAction().equals("MAIL INDISPONIBLE")){
+            } else if (intent.getAction().equals("MAIL INDISPONIBLE")) {
                 ((EditText) rootView.findViewById(R.id.email)).setError("Cet E-mail est déja utilisé.");
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
-            }else if(intent.getAction().equals("OK USER BLANK")){
+            } else if (intent.getAction().equals("OK USER BLANK")) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentInscription()).commit();
-            }else if(intent.getAction().equals("KO USER BLANK")){
+            } else if (intent.getAction().equals("KO USER BLANK")) {
                 Toast.makeText(getActivity(), "Erreur lors de la récupération du formulaire. Veuillez réessayer.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
             }
@@ -88,7 +88,7 @@ public class FragmentCompte extends Fragment {
                     UserManager.getInstance(getActivity()).goConnect();
 
                     rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
-                    ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.connexion);
+                    ((TextView) rootView.findViewById(R.id.chargement)).setText(R.string.connexion);
 
                 }
             }
@@ -110,7 +110,7 @@ public class FragmentCompte extends Fragment {
                     UserManager.getInstance(getActivity()).checkMail();
 
                     rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
-                    ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.verifmail);
+                    ((TextView) rootView.findViewById(R.id.chargement)).setText(R.string.verifmail);
 
                 }
             }
@@ -119,7 +119,7 @@ public class FragmentCompte extends Fragment {
 
     }
 
-    private boolean checkForm(){
+    private boolean checkForm() {
         if (((EditText) rootView.findViewById(R.id.email)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.email)).setError("Veuillez renseignez ce champ");
             return false;

@@ -210,21 +210,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void refreshBasket(){
+    private void refreshBasket() {
         if (UserManager.getInstance(this).hasToOpenBasket) {
             basketAdapterRight.notifyDataSetChanged();
             mDrawerLayout.openDrawer(mDrawerRight);
             UserManager.getInstance(this).hasToOpenBasket = false;
         }
 
-        if(basketAdapterRight.getCount() > 0){
+        if (basketAdapterRight.getCount() > 0) {
             setTotalBasket();
             setTotalSaved();
             findViewById(R.id.empty_basket).setVisibility(View.GONE);
             findViewById(R.id.total_saving).setVisibility(View.VISIBLE);
             findViewById(R.id.total_basket).setVisibility(View.VISIBLE);
             findViewById(R.id.validate_basket).setVisibility(View.VISIBLE);
-        }else{
+        } else {
             findViewById(R.id.empty_basket).setVisibility(View.VISIBLE);
             findViewById(R.id.total_saving).setVisibility(View.GONE);
             findViewById(R.id.total_basket).setVisibility(View.GONE);
@@ -234,8 +234,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setTotalBasket() {
         TextView textViewTotalBasket = (TextView) findViewById(R.id.total_basket);
-        String total  = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalBasket());
-        textViewTotalBasket.setText("Total du panier : " + total  + "€");
+        String total = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalBasket());
+        textViewTotalBasket.setText("Total du panier : " + total + "€");
     }
 
     public void setTotalSaved() {
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         String total = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalSaving());
         textViewTotalSaving.setText("Vous avez économisé : " + total + "€");
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
