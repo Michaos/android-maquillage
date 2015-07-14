@@ -59,7 +59,19 @@ public class AddressesAdapter extends BaseAdapter {
 
         Address myAddress = myAddresses.get(position);
 
-        // fill with wrapper...
+        System.out.println(myAddress.toString());
+
+        wrapper.getAlias().setText(myAddress.getAlias());
+        wrapper.getSociete().setText(myAddress.getCompany());
+        wrapper.getTva().setText(myAddress.getVatNumber());
+        wrapper.getAdresse().setText(myAddress.getAddress1());
+        wrapper.getAdresse2().setText(myAddress.getAddress2());
+        wrapper.getCp().setText(myAddress.getPostcode());
+        wrapper.getVille().setText(myAddress.getCity());
+        wrapper.getPays().setText(myAddress.getCountry());
+        wrapper.getTelfixe().setText(myAddress.getPhone());
+        wrapper.getTelport().setText(myAddress.getPhoneMobile());
+        wrapper.getInfos().setText(myAddress.getOther());
 
         return row;
     }

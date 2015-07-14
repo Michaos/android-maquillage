@@ -105,7 +105,7 @@ public class UserManager {
                 id = ((JSONObject) o).optJSONArray("customers").optJSONObject(0).optInt("id");
             }
 
-            JSONObject jsonObjectUser = ApiManager.callAPI(FluxManager.URL_GET_USER.replace("__ID__", id + ""));
+            JSONObject jsonObjectUser = (JSONObject) ApiManager.callAPI(FluxManager.URL_GET_USER.replace("__ID__", id + ""));
 
             user.setId(jsonObjectUser.optJSONObject("customer").optInt("id"));
             user.setLastName(jsonObjectUser.optJSONObject("customer").optString("lastname"));

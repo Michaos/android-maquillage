@@ -29,9 +29,13 @@ public class FragmentMesCommandes extends Fragment {
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            System.out.println("AAAA " +  intent.getAction());
+
             if (intent.getAction().equals("OK ORDERS")) {
                 init();
             } else if (intent.getAction().equals("KO ORDERS")) {
+
             }else if(intent.getAction().equals("NO ORDERS")){
                 rootView.findViewById(R.id.progress).setVisibility(View.GONE);
                 ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.no_orders);
@@ -61,6 +65,7 @@ public class FragmentMesCommandes extends Fragment {
     private void init() {
 
         rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
+        rootView.findViewById(R.id.listView).setVisibility(View.VISIBLE);
 
         ListView myListView = (ListView) rootView.findViewById(R.id.listView);
         myListView.setAdapter(new OrdersAdapter(getActivity(), OrderManager.getInstance(getActivity()).getListOrders()));

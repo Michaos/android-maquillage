@@ -46,18 +46,16 @@ public class OrderManager {
 
             Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ORDERS.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
-            if (o == null) {
+            if (o == null){
                 return 2;
+            } else if (((JSONArray) o).length() == 0) {
+                return 0;
             }
 
             JSONArray jsonListOrder = ((JSONObject) o).optJSONArray("orders");
 
-            if (jsonListOrder.length() == 0){
-                return 0;
-            }
-
             for (int i = 0; i < jsonListOrder.length(); i++) {
-                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ORDER.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
+                JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_GET_ORDER.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
                 if(jsonObject != null){
                     listOrders.add(new Order(jsonObject));
                 }else{

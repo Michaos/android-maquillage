@@ -26,6 +26,6 @@
     <string name="creation">Création de votre compte en cours...</string>
     <string name="recup_adresses">Récupération de vos adresses en cours...</string>
     <string name="recup_commandes">Récupération de vos commandes en cours...</string>
-    <string name="no_addresses">Vous n\'avez aucunes addresses.</string>
-    <string name="no_orders">Vous n\'avez aucunes commandes.</string>
+    <string name="no_addresses">Vous n\'avez aucune adresses.</string>
+    <string name="no_orders">Vous n\'avez aucune commandes.</string>
 </resources>

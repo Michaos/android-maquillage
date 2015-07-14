@@ -2,6 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/alias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="alias"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/societe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="societe"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tva"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/adresse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adresse"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/adresse2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adresse2"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/cp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CP000"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/ville"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ville"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/pays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pays"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tel_fixe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tel_fixe01"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tel_portable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tel_port06"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/infos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="infos supp."
+        android:textColor="@color/black" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/article_image"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_dark" />
 
 </LinearLayout>

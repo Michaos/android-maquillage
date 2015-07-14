@@ -46,20 +46,30 @@ public class AddressManager {
 
             Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ADDRESSES.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
-            if (o == null) {
+            if (o == null){
                 return 2;
+            } else if (o instanceof JSONArray && ((JSONArray) o).length() == 0){
+                return 0;
             }
 
             JSONArray jsonListAddresse = ((JSONObject) o).optJSONArray("addresses");
 
-            if (jsonListAddresse.length() == 0){
-                return 0;
-            }
-
             for (int i = 0; i < jsonListAddresse.length(); i++) {
-                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADDRESS.replace("__ID__", jsonListAddresse.optJSONObject(i).optInt("id") + ""));
+                JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_GET_ADDRESS.replace("__ID__", jsonListAddresse.optJSONObject(i).optInt("id") + ""));
                 if(jsonObject != null){
-                    listAddresses.add(new Address(jsonObject));
+
+                    Address adress = new  Address(jsonObject);
+
+                    String idCountry = jsonObject.optJSONObject("address").optString("id_country");
+
+                    JSONObject countryInfos = (JSONObject) ApiManager.callAPI(FluxManager.URL_GET_COUNTRY.replace("__ID__", idCountry));
+
+                    if(countryInfos != null && countryInfos.optJSONObject("country") != null){
+                        adress.setCountry(countryInfos.optJSONObject("country").optString("name"));
+                    }
+
+                    listAddresses.add(adress);
+
                 }else{
                     return 2;
                 }

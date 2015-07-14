@@ -69,7 +69,7 @@ public class MenuManager {
 
         @Override
         protected Boolean doInBackground(Object... theme) {
-            JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_MENU);
+            JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_MENU);
             if (jsonObject == null) {
                 return false;
             }
@@ -95,7 +95,7 @@ public class MenuManager {
         try {
             JSONArray jsonMenuLeft = json.getJSONObject("category").getJSONObject("associations").getJSONArray("categories");
             for (int i = 0; i < jsonMenuLeft.length(); i++) {
-                JSONObject cat = ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", jsonMenuLeft.getJSONObject(i).optString("id", "")));
+                JSONObject cat = (JSONObject) ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", jsonMenuLeft.getJSONObject(i).optString("id", "")));
                 if (cat != null) {
                     CacheManager.createCache(json, FluxManager.DIR_DATA, "Categorie::" + jsonMenuLeft.getJSONObject(i).optString("id", ""));
                 }
@@ -112,7 +112,7 @@ public class MenuManager {
     }
 
     public synchronized HideMenuItem parseMenuBis(JSONObject json) {
-        JSONObject cat = ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", json.optString("id", "")));
+        JSONObject cat = (JSONObject) ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", json.optString("id", "")));
         if (cat != null) {
             CacheManager.createCache(json, FluxManager.DIR_DATA, "Categorie::" + json.optString("id", ""));
         }

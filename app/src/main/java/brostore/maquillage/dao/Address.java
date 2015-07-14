@@ -15,22 +15,23 @@ public class Address {
     private String address2;
     private String postcode;
     private String city;
+    private String country;
     private String other;
     private String phone;
     private String phoneMobile;
 
     public Address(JSONObject jsonObject) {
-        id = jsonObject.optInt("id");
-        alias = jsonObject.optString("alias");
-        company = jsonObject.optString("company");
-        vatNumber = jsonObject.optString("vatNumber");
-        address1 = jsonObject.optString("address1");
-        address2 = jsonObject.optString("address2");
-        postcode = jsonObject.optString("postcode");
-        city = jsonObject.optString("city");
-        other = jsonObject.optString("other");
-        phone = jsonObject.optString("phone");
-        phoneMobile = jsonObject.optString("phoneMobile");
+        id = jsonObject.optJSONObject("address").optInt("id");
+        alias = jsonObject.optJSONObject("address").optString("alias");
+        company = jsonObject.optJSONObject("address").optString("company");
+        vatNumber = jsonObject.optJSONObject("address").optString("vatNumber");
+        address1 = jsonObject.optJSONObject("address").optString("address1");
+        address2 = jsonObject.optJSONObject("address").optString("address2");
+        postcode = jsonObject.optJSONObject("address").optString("postcode");
+        city = jsonObject.optJSONObject("address").optString("city");
+        other = jsonObject.optJSONObject("address").optString("other");
+        phone = jsonObject.optJSONObject("address").optString("phone");
+        phoneMobile = jsonObject.optJSONObject("address").optString("phoneMobile");
     }
 
     public int getId() {
@@ -119,5 +120,31 @@ public class Address {
 
     public void setPhoneMobile(String phoneMobile) {
         this.phoneMobile = phoneMobile;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", alias='" + alias + '\'' +
+                ", company='" + company + '\'' +
+                ", vatNumber='" + vatNumber + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", other='" + other + '\'' +
+                ", phone='" + phone + '\'' +
+                ", phoneMobile='" + phoneMobile + '\'' +
+                '}';
     }
 }

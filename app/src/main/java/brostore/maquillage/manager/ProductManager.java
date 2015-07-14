@@ -58,7 +58,7 @@ public class ProductManager {
 
             categoryId = params[0];
 
-            JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", categoryId + ""));
+            JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_CATEGORIES.replace("__ID__", categoryId + ""));
 
             if (jsonObject == null) {
                 return false;
@@ -92,13 +92,13 @@ public class ProductManager {
 
             for (int i = base; i < count; i++) {
 
-                JSONObject jsonProduct = ApiManager.callAPI(FluxManager.URL_PRODUCT.replace("__ID__", jsonArray.getJSONObject(i).optString("id", "")));
+                JSONObject jsonProduct = (JSONObject) ApiManager.callAPI(FluxManager.URL_PRODUCT.replace("__ID__", jsonArray.getJSONObject(i).optString("id", "")));
                 if (jsonProduct == null) {
                     return false;
                 }
                 Product product = new Product(jsonProduct);
 
-                JSONObject jsonPrice = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));
+                JSONObject jsonPrice = (JSONObject) ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));
 
                 if (jsonPrice != null) {
                     Double reduction = (Double.parseDouble(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction")));
@@ -149,7 +149,7 @@ public class ProductManager {
         protected Boolean doInBackground(Product... params) {
 
             String quantityId = params[0].getQuantityId();
-            JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_STOCK.replace("__ID_QUANTITY__", quantityId));
+            JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_STOCK.replace("__ID_QUANTITY__", quantityId));
 
             if (jsonObject == null) {
                 return false;

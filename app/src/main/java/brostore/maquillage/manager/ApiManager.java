@@ -2,6 +2,7 @@ package brostore.maquillage.manager;
 
 import android.util.Base64;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +18,9 @@ public class ApiManager {
 
     public static final int TIMEOUT = 30000;
 
-    public static JSONObject callAPI(String urlApi) {
+    public static Object callAPI(String urlApi) {
+
+        System.out.println("AAAA url :: " + urlApi);
 
         try {
 
@@ -42,6 +45,10 @@ public class ApiManager {
                 response.append(inputLine);
             }
             in.close();
+
+            if(response.toString().startsWith("[")){
+                return new JSONArray(response.toString());
+            }
 
             return new JSONObject(response.toString());
 

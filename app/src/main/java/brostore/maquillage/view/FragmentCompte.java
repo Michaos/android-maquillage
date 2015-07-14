@@ -81,8 +81,8 @@ public class FragmentCompte extends Fragment {
                     //UserManager.getInstance(getActivity()).getUser().setMdp(((EditText) rootView.findViewById(R.id.mdp)).getText().toString());
 
                     //test
-                    UserManager.getInstance(getActivity()).getUser().setEmail("finaltest2@mail.com");
-                    UserManager.getInstance(getActivity()).getUser().setMdp("finaltest2");
+                    UserManager.getInstance(getActivity()).getUser().setEmail("finaltest@mail.com");
+                    UserManager.getInstance(getActivity()).getUser().setMdp("finaltest");
                     //test
 
                     UserManager.getInstance(getActivity()).goConnect();

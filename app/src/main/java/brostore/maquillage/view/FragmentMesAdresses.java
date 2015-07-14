@@ -29,6 +29,7 @@ public class FragmentMesAdresses extends Fragment {
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            System.out.println("AAAA " + intent.getAction());
             if (intent.getAction().equals("OK ADDRESSES")) {
                 init();
             } else if (intent.getAction().equals("KO ADDRESSES")) {
@@ -64,6 +65,7 @@ public class FragmentMesAdresses extends Fragment {
         rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
 
         rootView.findViewById(R.id.add_addresse).setVisibility(View.VISIBLE);
+        rootView.findViewById(R.id.listView).setVisibility(View.VISIBLE);
 
         ListView myListView = (ListView) rootView.findViewById(R.id.listView);
         myListView.setAdapter(new AddressesAdapter(getActivity(), AddressManager.getInstance(getActivity()).getListAddresses()));
