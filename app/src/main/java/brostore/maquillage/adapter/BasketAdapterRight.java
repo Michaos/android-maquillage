@@ -15,9 +15,10 @@ import java.util.List;
 import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.dao.User;
+import brostore.maquillage.manager.UserManager;
 import brostore.maquillage.wrapper.BasketWrapper;
 
-public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnItemSelectedListener{
+public class BasketAdapterRight extends BaseAdapter {
 
     private LayoutInflater inflater;
     private Context mContext;
@@ -48,7 +49,7 @@ public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnIte
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
         if (row == null) {
             row = inflater.inflate(R.layout.item_basket, null);
@@ -58,7 +59,7 @@ public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnIte
             wrapper = (BasketWrapper) row.getTag();
         }
 
-        Product p = myProducts.get(position);
+        final Product p = myProducts.get(position);
 
         if (p.getBitmapImage() == null) {
             wrapper.getArticleImage().setImageResource(R.drawable.maquillage);
@@ -67,16 +68,7 @@ public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnIte
         }
         wrapper.getArticleName().setText(p.getName());
 
-        setQuantitySpinner();
-        wrapper.getArticleQuantitySpinner().setSelection(myQuantities.get(position));
-
-        double totalPrice = p.getReducedPrice() * myQuantities.get(position);
-        wrapper.getArticleTotalPrice().setText(String.format("%.2f", totalPrice)+"€");
-
-        return row;
-    }
-
-    public void setQuantitySpinner() {
+        // Spinner Quantity
         List<String> list = new ArrayList<String>();
         for (int i = 0; i <= 10; i++) {
             list.add(i+"");
@@ -86,20 +78,51 @@ public class BasketAdapterRight extends BaseAdapter implements AdapterView.OnIte
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         wrapper.getArticleQuantitySpinner().setAdapter(dataAdapter);
-        wrapper.getArticleQuantitySpinner().setOnItemSelectedListener(this);
+        wrapper.getArticleQuantitySpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int spinnerPosition, long id) {
+                if (myQuantities.get(position) != spinnerPosition) {
+                    myQuantities.set(position, spinnerPosition);
+                    updateListView();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        wrapper.getArticleQuantitySpinner().setSelection(myQuantities.get(position));
+
+        double totalPrice = p.getReducedPrice() * myQuantities.get(position);
+        wrapper.getArticleTotalPrice().setText(String.format("%.2f", totalPrice) + "€");
+
+        // delete button
+        wrapper.getBtnDelete().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myProducts.remove(position);
+                User myUser = UserManager.getInstance(mContext).getUser();
+                Double totalBasket = myUser.getTotalBasket();
+                System.out.println("AAAA B - totalBasket " + String.format("%.2f", totalBasket) + " / user: " + String.format("%.2f", myUser.getTotalBasket()));
+
+                totalBasket -= p.getReducedPrice() * myQuantities.get(position);
+                System.out.println("AAAA B - new totalBasket " + String.format("%.2f", totalBasket) + " / user: " + String.format("%.2f", myUser.getTotalBasket()));
+                myUser.setTotalBasket(totalBasket);
+
+                Double totalSaving = myUser.getTotalSaving();
+                System.out.println("AAAA B - totalSaving " + String.format("%.2f", totalSaving) + " / user: " + String.format("%.2f", myUser.getTotalSaving()));
+                totalSaving -= (p.getPrice() - p.getReducedPrice()) * myQuantities.get(position);
+                System.out.println("AAAA B - new totalSaving " + String.format("%.2f", totalSaving) + " / user: " + String.format("%.2f", myUser.getTotalSaving()));
+                myUser.setTotalSaving(totalSaving);
+
+                updateListView();
+            }
+        });
+
+        return row;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //TODO get position of the product !!
-        int productPosition = 0;
-        myQuantities.set(productPosition, position);
-        System.out.println("AAAA B - all is ok right here");
-        //this.notifyDataSetChanged();
-        System.out.println("AAAA B - after notifyDataSetChanged...");
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    private void updateListView() {
+        this.notifyDataSetChanged();
     }
 }
