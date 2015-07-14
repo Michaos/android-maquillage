@@ -59,8 +59,8 @@ public class WishlistAdapter extends BaseAdapter {
         } else {
             wrapper.getArticleImage().setImageBitmap(p.getBitmapImage());
         }
-        wrapper.getArticleNom().setText(p.getName());
-        wrapper.getArticlePrix().setText(String.format("%.2f", p.getReducedPrice()) + "€");
+        wrapper.getArticleName().setText(p.getName());
+        wrapper.getArticleTotalPrice().setText(String.format("%.2f", p.getReducedPrice())+"€");
 
         return row;
     }

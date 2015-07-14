@@ -75,7 +75,7 @@ public class ProductActivity extends Activity {
             ((ImageView) findViewById(R.id.article_image)).setImageBitmap(myProduct.getBitmapImage());
         }
 
-        ((TextView) findViewById(R.id.article_nom)).setText(myProduct.getName());
+        ((TextView) findViewById(R.id.article_name)).setText(myProduct.getName());
         ((TextView) findViewById(R.id.article_infos)).setText(Html.fromHtml(myProduct.getDescription()));
         ((TextView) findViewById(R.id.article_prix1)).setText(" " + String.format("%.2f", myProduct.getPrice()) + "€ ");
         ((TextView) findViewById(R.id.article_prix1)).getPaint().setStrikeThruText(true);

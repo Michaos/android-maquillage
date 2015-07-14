@@ -32,8 +32,8 @@ public class ProductWrapper {
     }
 
     public TextView getArticleNom() {
-        if (name == null) {
-            name = (TextView) baseView.findViewById(R.id.article_nom);
+        if (name== null) {
+            name = (TextView) baseView.findViewById(R.id.article_name);
         }
         return (name);
     }

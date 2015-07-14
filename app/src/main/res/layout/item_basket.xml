@@ -15,47 +15,61 @@
         android:src="@drawable/maquillage" />
 
     <brostore.maquillage.custom.FontTextView
-        android:id="@+id/article_nom"
+        android:id="@+id/article_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:ellipsize="end"
+        android:layout_marginRight="15dp"
         android:layout_toRightOf="@+id/article_image"
         android:text="Rouge a levres BOURJOIS Sweeta levres BOURJOIS Sweet a levres BOURJOIS Sweet "
         android:textColor="@color/white"
         app:ttfNameTextView="ElleNovaC-Bold.otf"/>
 
+    <Button
+        android:id="@+id/article_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text=" X "
+        android:background="@color/white"
+        android:textColor="@color/black" />
+
     <TextView
-        android:id="@+id/article_prix"
+        android:id="@+id/article_total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/article_prix_total"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/article_image"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/article_name"
+        android:layout_marginTop="8dp"
         android:text="4,95€"
-        android:textColor="@color/rose" />
+        android:textColor="@color/rose"
+        android:textSize="18dp"/>
 
-    <TextView
-        android:id="@+id/article_quantity"
+    <LinearLayout
+        android:id="@+id/linear_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/article_prix"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/article_prix"
-        android:text="Qté : 2"
-        android:textColor="@color/white" />
+        android:layout_alignBottom="@+id/article_total_price"
+        android:layout_toRightOf="@+id/article_image"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/article_prix_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_above="@+id/view"
-        android:layout_marginTop="5dp"
-        android:text="Total : 8,90€"
-        android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/article_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qté : "
+            android:textColor="@color/grey_bright" />
+
+        <Spinner
+            android:id="@+id/article_quantity_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/view"
