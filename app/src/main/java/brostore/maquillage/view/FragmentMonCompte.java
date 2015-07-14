@@ -33,11 +33,11 @@ public class FragmentMonCompte extends Fragment {
 
         String welcome = "Bienvenue ";
 
-        if(UserManager.getInstance(getActivity()).getUser().getIdGender().equals("1")){
+        if (UserManager.getInstance(getActivity()).getUser().getIdGender().equals("1")) {
             welcome = "Bienvenu ";
         }
 
-        ((TextView)rootView.findViewById(R.id.welcome)).setText(welcome + UserManager.getInstance(getActivity()).getUser().getFirstName());
+        ((TextView) rootView.findViewById(R.id.welcome)).setText(welcome + UserManager.getInstance(getActivity()).getUser().getFirstName());
 
         rootView.findViewById(R.id.adresses).setOnClickListener(new View.OnClickListener() {
             @Override

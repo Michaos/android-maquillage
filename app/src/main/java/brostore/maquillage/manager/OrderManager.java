@@ -46,7 +46,7 @@ public class OrderManager {
 
             Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ORDERS.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
-            if (o == null){
+            if (o == null) {
                 return 2;
             } else if (((JSONArray) o).length() == 0) {
                 return 0;
@@ -56,9 +56,9 @@ public class OrderManager {
 
             for (int i = 0; i < jsonListOrder.length(); i++) {
                 JSONObject jsonObject = (JSONObject) ApiManager.callAPI(FluxManager.URL_GET_ORDER.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
-                if(jsonObject != null){
+                if (jsonObject != null) {
                     listOrders.add(new Order(jsonObject));
-                }else{
+                } else {
                     return 2;
                 }
             }
@@ -69,7 +69,7 @@ public class OrderManager {
         public void onPostExecute(Integer result) {
             if (result == 1) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK ORDERS"));
-            } else  if (result == 2) {
+            } else if (result == 2) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO ORDERS"));
             } else if (result == 0) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("NO ORDERS"));

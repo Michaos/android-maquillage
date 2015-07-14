@@ -46,7 +46,7 @@ public class ApiManager {
             }
             in.close();
 
-            if(response.toString().startsWith("[")){
+            if (response.toString().startsWith("[")) {
                 return new JSONArray(response.toString());
             }
 

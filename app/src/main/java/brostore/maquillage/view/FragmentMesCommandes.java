@@ -30,15 +30,15 @@ public class FragmentMesCommandes extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            System.out.println("AAAA " +  intent.getAction());
+            System.out.println("AAAA " + intent.getAction());
 
             if (intent.getAction().equals("OK ORDERS")) {
                 init();
             } else if (intent.getAction().equals("KO ORDERS")) {
 
-            }else if(intent.getAction().equals("NO ORDERS")){
+            } else if (intent.getAction().equals("NO ORDERS")) {
                 rootView.findViewById(R.id.progress).setVisibility(View.GONE);
-                ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.no_orders);
+                ((TextView) rootView.findViewById(R.id.chargement)).setText(R.string.no_orders);
             }
         }
     };
