@@ -37,32 +37,44 @@ public class AddressManager {
         Utils.execute(new GetUserAddresses());
     }
 
-    private class GetUserAddresses extends AsyncTask<Object, Object, Boolean> {
+    private class GetUserAddresses extends AsyncTask<Object, Object, Integer> {
 
         @Override
-        protected Boolean doInBackground(Object... params) {
+        protected Integer doInBackground(Object... params) {
+
+            listAddresses = new ArrayList<>();
 
             Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ADDRESSES.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
             if (o == null) {
-                return false;
+                return 2;
             }
 
             JSONArray jsonListAddresse = ((JSONObject) o).optJSONArray("addresses");
 
-            for (int i = 0; i < jsonListAddresse.length(); i++) {
-                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADRESS.replace("__ID__", jsonListAddresse.optJSONObject(i).optInt("id") + ""));
-                listAddresses.add(new Address(jsonObject));
+            if (jsonListAddresse.length() == 0){
+                return 0;
             }
-            return true;
+
+            for (int i = 0; i < jsonListAddresse.length(); i++) {
+                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADDRESS.replace("__ID__", jsonListAddresse.optJSONObject(i).optInt("id") + ""));
+                if(jsonObject != null){
+                    listAddresses.add(new Address(jsonObject));
+                }else{
+                    return 2;
+                }
+            }
+            return 1;
         }
 
         @Override
-        public void onPostExecute(Boolean result) {
-            if (result) {
+        public void onPostExecute(Integer result) {
+            if (result == 1) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK ADDRESSES"));
-            } else {
+            } else  if (result == 2) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO ADDRESSES"));
+            } else if (result == 0) {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("NO ADDRESSES"));
             }
         }
     }

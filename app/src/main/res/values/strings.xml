@@ -24,4 +24,8 @@
     <string name="verifmail">Vérification de l\'adresse mail...</string>
     <string name="connexion">Connexion à votre compte en cours...</string>
     <string name="creation">Création de votre compte en cours...</string>
+    <string name="recup_adresses">Récupération de vos adresses en cours...</string>
+    <string name="recup_commandes">Récupération de vos commandes en cours...</string>
+    <string name="no_addresses">Vous n\'avez aucunes addresses.</string>
+    <string name="no_orders">Vous n\'avez aucunes commandes.</string>
 </resources>

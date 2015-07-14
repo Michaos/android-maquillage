@@ -37,32 +37,44 @@ public class OrderManager {
         Utils.execute(new GetUserOrders());
     }
 
-    private class GetUserOrders extends AsyncTask<Object, Object, Boolean> {
+    private class GetUserOrders extends AsyncTask<Object, Object, Integer> {
 
         @Override
-        protected Boolean doInBackground(Object... params) {
+        protected Integer doInBackground(Object... params) {
+
+            listOrders = new ArrayList<>();
 
             Object o = ApiManager.callAPI(FluxManager.URL_GET_USER_ORDERS.replace("__ID__", UserManager.getInstance(mContext).getUser().getId() + ""));
 
             if (o == null) {
-                return false;
+                return 2;
             }
 
-            JSONArray jsonListOrder = ((JSONObject) o).optJSONArray("addresses");
+            JSONArray jsonListOrder = ((JSONObject) o).optJSONArray("orders");
+
+            if (jsonListOrder.length() == 0){
+                return 0;
+            }
 
             for (int i = 0; i < jsonListOrder.length(); i++) {
-                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ADRESS.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
-                listOrders.add(new Order(jsonObject));
+                JSONObject jsonObject = ApiManager.callAPI(FluxManager.URL_GET_ORDER.replace("__ID__", jsonListOrder.optJSONObject(i).optInt("id") + ""));
+                if(jsonObject != null){
+                    listOrders.add(new Order(jsonObject));
+                }else{
+                    return 2;
+                }
             }
-            return true;
+            return 1;
         }
 
         @Override
-        public void onPostExecute(Boolean result) {
-            if (result) {
+        public void onPostExecute(Integer result) {
+            if (result == 1) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("OK ORDERS"));
-            } else {
+            } else  if (result == 2) {
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("KO ORDERS"));
+            } else if (result == 0) {
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("NO ORDERS"));
             }
         }
     }

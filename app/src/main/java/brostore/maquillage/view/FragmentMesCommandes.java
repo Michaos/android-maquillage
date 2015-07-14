@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import brostore.maquillage.R;
 import brostore.maquillage.adapter.OrdersAdapter;
@@ -31,7 +32,9 @@ public class FragmentMesCommandes extends Fragment {
             if (intent.getAction().equals("OK ORDERS")) {
                 init();
             } else if (intent.getAction().equals("KO ORDERS")) {
-
+            }else if(intent.getAction().equals("NO ORDERS")){
+                rootView.findViewById(R.id.progress).setVisibility(View.GONE);
+                ((TextView)rootView.findViewById(R.id.chargement)).setText(R.string.no_orders);
             }
         }
     };
@@ -47,6 +50,7 @@ public class FragmentMesCommandes extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK ORDERS");
         filter.addAction("KO ORDERS");
+        filter.addAction("NO ORDERS");
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
         OrderManager.getInstance(getActivity()).getUserOrders();
@@ -55,6 +59,9 @@ public class FragmentMesCommandes extends Fragment {
     }
 
     private void init() {
+
+        rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
+
         ListView myListView = (ListView) rootView.findViewById(R.id.listView);
         myListView.setAdapter(new OrdersAdapter(getActivity(), OrderManager.getInstance(getActivity()).getListOrders()));
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

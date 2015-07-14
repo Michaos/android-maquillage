@@ -23,6 +23,9 @@ public class OrdersAdapter extends BaseAdapter {
     private OrderWrapper wrapper;
 
     public OrdersAdapter(Context context, ArrayList<Order> listOrders) {
+
+        System.out.println("ADDRESS :: " + listOrders.size());
+
         inflater = LayoutInflater.from(context);
         mContext = context;
         myOrders = listOrders;

@@ -23,6 +23,9 @@ public class AddressesAdapter extends BaseAdapter {
     private AddressWrapper wrapper;
 
     public AddressesAdapter(Context context, ArrayList<Address> listAddresses) {
+
+        System.out.println("ADDRESS :: " + listAddresses.size());
+
         inflater = LayoutInflater.from(context);
         mContext = context;
         myAddresses = listAddresses;

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import brostore.maquillage.R;
 import brostore.maquillage.adapter.AddressesAdapter;
@@ -32,6 +33,10 @@ public class FragmentMesAdresses extends Fragment {
                 init();
             } else if (intent.getAction().equals("KO ADDRESSES")) {
 
+            } else if (intent.getAction().equals("NO ADDRESSES")) {
+                rootView.findViewById(R.id.progress).setVisibility(View.GONE);
+                ((TextView) rootView.findViewById(R.id.chargement)).setText(R.string.no_addresses);
+                rootView.findViewById(R.id.add_addresse).setVisibility(View.VISIBLE);
             }
         }
     };
@@ -46,6 +51,7 @@ public class FragmentMesAdresses extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("OK ADDRESSES");
         filter.addAction("KO ADDRESSES");
+        filter.addAction("NO ADDRESSES");
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
         AddressManager.getInstance(getActivity()).getUserAddresses();
@@ -54,6 +60,11 @@ public class FragmentMesAdresses extends Fragment {
     }
 
     private void init() {
+
+        rootView.findViewById(R.id.loadinglayout).setVisibility(View.GONE);
+
+        rootView.findViewById(R.id.add_addresse).setVisibility(View.VISIBLE);
+
         ListView myListView = (ListView) rootView.findViewById(R.id.listView);
         myListView.setAdapter(new AddressesAdapter(getActivity(), AddressManager.getInstance(getActivity()).getListAddresses()));
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
