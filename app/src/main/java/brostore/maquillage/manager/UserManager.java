@@ -2,6 +2,7 @@ package brostore.maquillage.manager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
 
@@ -21,9 +22,14 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import brostore.maquillage.dao.Product;
 import brostore.maquillage.dao.User;
+import brostore.maquillage.utils.Base64;
+import brostore.maquillage.utils.Base64DecoderException;
 import brostore.maquillage.utils.Utils;
 
 /**
@@ -369,6 +375,46 @@ public class UserManager {
                 mContext.sendBroadcast(new Intent("CreateFail"));
             }
         }
+    }
+
+    public void saveLog() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String logs = user.getEmail() + "!" + user.getMdp();
+
+                logs = Base64.encode(logs.getBytes());
+
+                SharedPreferences preferences = mContext.getSharedPreferences("logs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editeur = preferences.edit();
+                editeur.putString("logs", logs);
+                editeur.commit();
+            }
+        }).start();
+    }
+
+    public List<String> getLog() {
+        List<String> emailMdp = new ArrayList<>();
+        SharedPreferences preferences = mContext.getSharedPreferences("logs", Context.MODE_PRIVATE);
+        Map<String, ?> keys = preferences.getAll();
+
+        for (Map.Entry<String, ?> entry : keys.entrySet()) {
+
+            String str = (String) entry.getValue();
+            try {
+                str = new String(Base64.decode(str.getBytes()), "UTF-8");
+                String[] results = str.split("!");
+                if (results.length > 0) {
+                    emailMdp.add(results[0]);
+                    emailMdp.add(results[1]);
+                }
+            } catch (Base64DecoderException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        return emailMdp;
     }
 
 }

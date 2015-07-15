@@ -56,7 +56,7 @@ public class BasketWrapper {
             btnDelete = (Button) baseView.findViewById(R.id.article_delete);
         }
 
-        return(btnDelete);
+        return (btnDelete);
     }
 
     public TextView getArticleTotalPrice() {

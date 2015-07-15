@@ -74,11 +74,11 @@ public class ProductActivity extends Activity {
 
     }
 
-    private void shareFacebook(){
+    private void shareFacebook() {
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
 
-        String url = FluxManager.URL_SHARE.replace("__ID__", myProduct.getId()+"").replace("__LINK_REWRITE__", myProduct.getLinkRewrite());
+        String url = FluxManager.URL_SHARE.replace("__ID__", myProduct.getId() + "").replace("__LINK_REWRITE__", myProduct.getLinkRewrite());
 
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             ShareLinkContent linkContent = new ShareLinkContent.Builder()

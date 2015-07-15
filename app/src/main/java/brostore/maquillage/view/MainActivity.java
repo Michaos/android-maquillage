@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (qty == UserManager.getInstance(mContext).getUser().getQuantities().get(position)) {
                     dialog.cancel();
                 } else {
-                    UserManager.getInstance(mContext).addInBasket(UserManager.getInstance(mContext).getUser().getBasket().get(position), qty-UserManager.getInstance(mContext).getUser().getQuantities().get(position));
+                    UserManager.getInstance(mContext).addInBasket(UserManager.getInstance(mContext).getUser().getBasket().get(position), qty - UserManager.getInstance(mContext).getUser().getQuantities().get(position));
                     mContext.refreshBasket();
                 }
 

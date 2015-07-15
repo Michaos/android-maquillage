@@ -60,7 +60,7 @@ public class WishlistAdapter extends BaseAdapter {
             wrapper.getArticleImage().setImageBitmap(p.getBitmapImage());
         }
         wrapper.getArticleName().setText(p.getName());
-        wrapper.getArticleTotalPrice().setText(String.format("%.2f", p.getReducedPrice())+"€");
+        wrapper.getArticleTotalPrice().setText(String.format("%.2f", p.getReducedPrice()) + "€");
 
         return row;
     }
