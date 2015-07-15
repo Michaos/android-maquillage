@@ -60,7 +60,6 @@ public class ProductActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_product);
 
-        //TODO
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         IntentFilter filter = new IntentFilter();
@@ -99,7 +98,7 @@ public class ProductActivity extends Activity {
 
     private void init() {
 
-        findViewById(R.id.article_image).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.shareButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 shareFacebook();
