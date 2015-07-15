@@ -79,6 +79,10 @@ public class UserManager {
         hasToOpenBasket = true;
     }
 
+    public void minusInBasket(Product p, int quantity) {
+        //todo
+    }
+
     public void removeFromBasket(Product p){
         int has = getUser().hasAlreadyThatProduct(p);
 
