@@ -81,9 +81,28 @@ public class UserManager {
 
     public void minusInBasket(Product p, int quantity) {
         //todo
+
+        int has = getUser().hasAlreadyThatProduct(p);
+
+        totalBasket -= p.getReducedPrice() * getUser().getQuantities().get(has);
+        getUser().setTotalBasket(totalBasket);
+
+        totalSaving -= (p.getPrice() - p.getReducedPrice()) * getUser().getQuantities().get(has);
+        getUser().setTotalSaving(totalSaving);
+
+        totalBasket += p.getReducedPrice() * quantity;
+        getUser().setTotalBasket(totalBasket);
+
+        totalSaving += (p.getPrice() - p.getReducedPrice()) * quantity;
+        getUser().setTotalSaving(totalSaving);
+
+        getUser().getQuantities().set(has, quantity);
+
+        hasToOpenBasket = true;
+
     }
 
-    public void removeFromBasket(Product p){
+    public void removeFromBasket(Product p) {
         int has = getUser().hasAlreadyThatProduct(p);
 
         totalBasket -= p.getReducedPrice() * getUser().getQuantities().get(has);
@@ -95,7 +114,6 @@ public class UserManager {
         getUser().getBasket().remove(has);
         getUser().getQuantities().remove(has);
 
-        hasToOpenBasket = true;
     }
 
     public User getUser() {
