@@ -57,11 +57,22 @@
         android:layout_alignTop="@+id/article_total_price"
         android:layout_toRightOf="@+id/txt_qty"
         android:background="@drawable/edittext"
+        android:editable="false"
+        android:focusable="false"
         android:ems="2"
         android:gravity="center"
         android:inputType="number"
         android:selectAllOnFocus="true"
         android:text="10" />
+
+    <!--<ImageView
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/article_qty"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/ic_refresh_white_24dp"
+        android:layout_alignBottom="@+id/article_qty" />-->
 
     <TextView
         android:id="@+id/article_total_price"

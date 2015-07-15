@@ -1,6 +1,7 @@
 package brostore.maquillage.view;
 
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -28,6 +30,8 @@ import brostore.maquillage.manager.UserManager;
 import brostore.maquillage.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainActivity mContext;
 
     private ExpandableListView mDrawerListViewLeft;
     private RelativeLayout mDrawerRight;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mContext = this;
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(MenuManager.OK_MENU);
@@ -242,6 +248,70 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewTotalSaving = (TextView) findViewById(R.id.total_saving);
         String total = String.format("%.2f", UserManager.getInstance(this).getUser().getTotalSaving());
         textViewTotalSaving.setText("Vous avez économisé : " + total + "€");
+    }
+
+    public void popupQty(final int qty, final int position) {
+
+        final Dialog dialog = new Dialog(this, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.popup_layout);
+
+        ((EditText) dialog.findViewById(R.id.article_qty)).setText(qty + "");
+
+        dialog.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int qty = Integer.parseInt(((EditText) dialog.findViewById(R.id.article_qty)).getText().toString());
+
+                if (qty == 0) {
+                    UserManager.getInstance(mContext).removeFromBasket(UserManager.getInstance(mContext).getUser().getBasket().get(position));
+                    mContext.refreshBasket();
+                } else if (qty < UserManager.getInstance(mContext).getUser().getQuantities().get(position)) {
+                    //todo
+                } else {
+                    UserManager.getInstance(mContext).addInBasket(UserManager.getInstance(mContext).getUser().getBasket().get(position), qty);
+                    mContext.refreshBasket();
+                }
+
+                dialog.cancel();
+            }
+        });
+
+        dialog.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+
+        /*
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("titre");
+        alertDialog.setMessage("Enter message");
+
+        final EditText input = new EditText(MainActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setText(qty+"");
+        //alertDialog.setIcon(R.drawable.key);
+
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                System.out.println("DEBUG popup qty :: " + input.getText().toString());
+            }
+        });
+
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();*/
     }
 
     @Override

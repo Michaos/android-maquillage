@@ -1,7 +1,6 @@
 package brostore.maquillage.adapter;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,9 @@ public class BasketAdapterRight extends BaseAdapter {
     private ArrayList<Integer> myQuantities;
     private BasketWrapper wrapper;
     private int pos;
+    private View row;
 
-    private Handler handler = new Handler(){
+    /*private Handler handler = new Handler(){
         @Override
         public void handleMessage(android.os.Message msg) {
 
@@ -42,9 +42,9 @@ public class BasketAdapterRight extends BaseAdapter {
                 UserManager.getInstance(mContext).addInBasket(myProducts.get(pos), qty);
                 ((MainActivity) mContext).refreshBasket();
             }
-            */
+
         }
-    };
+    };*/
 
     public BasketAdapterRight(Context context, User myUser) {
         inflater = LayoutInflater.from(context);
@@ -70,7 +70,7 @@ public class BasketAdapterRight extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        View row = convertView;
+        row = convertView;
         if (row == null) {
             row = inflater.inflate(R.layout.item_basket, null);
             wrapper = new BasketWrapper(row);
@@ -102,6 +102,20 @@ public class BasketAdapterRight extends BaseAdapter {
         });
 
         wrapper.getArticleQty().setText(myQuantities.get(position) + "");
+        wrapper.getArticleQty().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) mContext).popupQty(myQuantities.get(position), position);
+            }
+        });
+
+        /*wrapper.getRefresh().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("DEBUG 1 qty .:" + wrapper.getArticleQty().getText().toString() + ":.");
+                System.out.println("DEBUG 2 qty .:" + ((EditText) row.findViewById(R.id.article_qty)).getText().toString() + ":.");
+            }
+        });*/
 
         /*wrapper.getArticleQty().setOnKeyListener(new View.OnKeyListener() {
             @Override
