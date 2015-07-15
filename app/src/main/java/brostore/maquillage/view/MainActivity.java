@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void refreshBasket() {
+    public void refreshBasket() {
         if (UserManager.getInstance(this).hasToOpenBasket) {
             basketAdapterRight.notifyDataSetChanged();
             mDrawerLayout.openDrawer(mDrawerRight);

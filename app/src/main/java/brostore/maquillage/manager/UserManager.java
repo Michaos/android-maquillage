@@ -79,6 +79,21 @@ public class UserManager {
         hasToOpenBasket = true;
     }
 
+    public void removeFromBasket(Product p){
+        int has = getUser().hasAlreadyThatProduct(p);
+
+        totalBasket -= p.getReducedPrice() * getUser().getQuantities().get(has);
+        getUser().setTotalBasket(totalBasket);
+
+        totalSaving -= (p.getPrice() - p.getReducedPrice()) * getUser().getQuantities().get(has);
+        getUser().setTotalSaving(totalSaving);
+
+        getUser().getBasket().remove(has);
+        getUser().getQuantities().remove(has);
+
+        hasToOpenBasket = true;
+    }
+
     public User getUser() {
         if (user == null) {
             user = new User();

@@ -23,19 +23,19 @@
         android:gravity="center"
         android:padding="15dp"
         android:text="Ajouter une adresse"
-        android:visibility="gone"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/loadinglayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/add_addresse"
         android:layout_alignTop="@+id/formulairelayout"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_above="@+id/add_addresse">
+        android:orientation="vertical">
 
         <ProgressBar
             android:id="@+id/progress"

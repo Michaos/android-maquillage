@@ -2,6 +2,7 @@ package brostore.maquillage.wrapper;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class BasketWrapper {
     private Spinner quantitySpinner;
     private TextView totalPrice;
     private Button btnDelete;
+    private EditText qty;
 
     public BasketWrapper(View base) {
         this.baseView = base;
@@ -42,12 +44,12 @@ public class BasketWrapper {
         return (name);
     }
 
-    public Spinner getArticleQuantitySpinner() {
+    /*public Spinner getArticleQuantitySpinner() {
         if (quantitySpinner == null) {
             quantitySpinner = (Spinner) baseView.findViewById(R.id.article_quantity_spinner);
         }
         return(quantitySpinner);
-    }
+    }*/
 
     public Button getBtnDelete() {
         if (btnDelete == null) {
@@ -62,6 +64,13 @@ public class BasketWrapper {
             totalPrice = (TextView) baseView.findViewById(R.id.article_total_price);
         }
         return (totalPrice);
+    }
+
+    public EditText getArticleQty() {
+        if (qty == null) {
+            qty = (EditText) baseView.findViewById(R.id.article_qty);
+        }
+        return (qty);
     }
 
 }
