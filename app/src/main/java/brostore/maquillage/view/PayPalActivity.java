@@ -52,6 +52,8 @@ public class PayPalActivity extends Activity {
     // note that these credentials will differ between live & sandbox environments.
     private static final String CONFIG_CLIENT_ID = "AnZIsKpohcsDchgFZ42KHocvu-YbA9TOQXloLlrJMOxDfWU--zh75P67";//"credential from developer.paypal.com";
 
+
+
     private static final int REQUEST_CODE_PAYMENT = 1;
     private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
     private static final int REQUEST_CODE_PROFILE_SHARING = 3;
@@ -84,7 +86,7 @@ public class PayPalActivity extends Activity {
          * 
          * Also, to include additional payment details and an item list, see getStuffToBuy() below.
          */
-        PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
+        PayPalPayment stuffToBuy = getStuffToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
 
         /*
          * See getStuffToBuy(..) for examples of some available payment options.
@@ -95,7 +97,7 @@ public class PayPalActivity extends Activity {
         // send the same configuration for restart resiliency
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
 
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, stuffToBuy);
 
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
     }

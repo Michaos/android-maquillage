@@ -259,8 +259,6 @@ public class MainActivity extends AppCompatActivity {
         EditText et = ((EditText) dialog.findViewById(R.id.article_qty));
 
         et.setText(qty + "");
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
 
         dialog.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,33 +291,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
-
-        /*
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle("titre");
-        alertDialog.setMessage("Enter message");
-
-        final EditText input = new EditText(MainActivity.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        alertDialog.setView(input);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-        input.setText(qty+"");
-        //alertDialog.setIcon(R.drawable.key);
-
-        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                System.out.println("DEBUG popup qty :: " + input.getText().toString());
-            }
-        });
-
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        alertDialog.show();*/
     }
 
     @Override

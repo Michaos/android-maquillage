@@ -13,6 +13,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -257,7 +258,7 @@ public class UserManager {
 
             Object o = ApiManager.callAPI(FluxManager.URL_CHECK_MAIL.replace("__MAIL__", params[0]));
 
-            if (o == null) {
+            if (o instanceof JSONArray) {
                 return true;
             }
 

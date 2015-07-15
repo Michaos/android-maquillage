@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:onClick="onBuyPressed"
-            android:text="Buy a Thing" />
+            android:text="Buy a Thing"
+            android:textColor="@color/white"
+            android:background="@color/rose"/>
 
         <Button
             android:id="@+id/futurePaymentBtn"
@@ -30,7 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:onClick="onFuturePaymentPressed"
-            android:text="Future Payment Consent" />
+            android:text="Future Payment Consent"
+            android:textColor="@color/white"
+            android:background="@color/rose" />
 
         <Button
             android:id="@+id/futurePaymentPurchaseBtn"
@@ -38,7 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:onClick="onFuturePaymentPurchasePressed"
-            android:text="Future Payment Purchase" />
+            android:text="Future Payment Purchase"
+            android:textColor="@color/white"
+            android:background="@color/rose" />
 
         <Button
             android:id="@+id/profileSharingBtn"
@@ -46,7 +52,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:onClick="onProfileSharingPressed"
-            android:text="Profile Sharing Consent" />
+            android:text="Profile Sharing Consent"
+            android:textColor="@color/white"
+            android:background="@color/rose" />
     </LinearLayout>
 
 </RelativeLayout>
