@@ -32,4 +32,6 @@ public class FluxManager {
     public static final String URL_GET_USER_ORDERS = "http://www.maquillage.fr/maquillage-marque/api/orders/?filter[id_customer]=__ID__&output_format=JSON";
     public static final String URL_GET_ORDER = "http://www.maquillage.fr/maquillage-marque/api/orders/__ID__&output_format=JSON";
 
+    public static final String URL_SHARE = "http://www.maquillage.fr/maquillage-marque/__ID__-__LINK_REWRITE__.html";
+
 }

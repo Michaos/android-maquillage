@@ -7,7 +7,7 @@
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
 
-    <string name="facebook_app_id">__FACEBOOK_APP_ID__</string>
+    <string name="facebook_app_id">1576771305917663</string>
     <string name="prenom">Prénom</string>
     <string name="nom">Nom</string>
     <string name="email">E-mail</string>

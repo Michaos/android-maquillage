@@ -20,8 +20,6 @@ public class ApiManager {
 
     public static Object callAPI(String urlApi) {
 
-        System.out.println("AAAA url :: " + urlApi);
-
         try {
 
             StringBuffer response = new StringBuffer();

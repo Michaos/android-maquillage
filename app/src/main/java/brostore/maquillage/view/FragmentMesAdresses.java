@@ -29,7 +29,6 @@ public class FragmentMesAdresses extends Fragment {
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("AAAA " + intent.getAction());
             if (intent.getAction().equals("OK ADDRESSES")) {
                 init();
             } else if (intent.getAction().equals("KO ADDRESSES")) {

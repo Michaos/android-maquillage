@@ -22,29 +22,7 @@ public class BasketAdapterRight extends BaseAdapter {
     private ArrayList<Product> myProducts;
     private ArrayList<Integer> myQuantities;
     private BasketWrapper wrapper;
-    private int pos;
     private View row;
-
-    /*private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(android.os.Message msg) {
-
-            int qty = Integer.parseInt(wrapper.getArticleQty().getText().toString());
-
-            System.out.println("DEBUG qty .:" + qty + ":.");
-            /*
-            if (qty == 0) {
-                UserManager.getInstance(mContext).removeFromBasket(myProducts.get(pos));
-                ((MainActivity) mContext).refreshBasket();
-            } else if (qty < myQuantities.get(pos)) {
-                //todo
-            } else {
-                UserManager.getInstance(mContext).addInBasket(myProducts.get(pos), qty);
-                ((MainActivity) mContext).refreshBasket();
-            }
-
-        }
-    };*/
 
     public BasketAdapterRight(Context context, User myUser) {
         inflater = LayoutInflater.from(context);
@@ -108,105 +86,6 @@ public class BasketAdapterRight extends BaseAdapter {
                 ((MainActivity) mContext).popupQty(myQuantities.get(position), position);
             }
         });
-
-        /*wrapper.getRefresh().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("DEBUG 1 qty .:" + wrapper.getArticleQty().getText().toString() + ":.");
-                System.out.println("DEBUG 2 qty .:" + ((EditText) row.findViewById(R.id.article_qty)).getText().toString() + ":.");
-            }
-        });*/
-
-        /*wrapper.getArticleQty().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER) {
-
-                    pos = position;
-                    handler.sendEmptyMessageDelayed(0, 1000);
-
-
-                    /*if (qty == 0) {
-                        UserManager.getInstance(mContext).removeFromBasket(myProducts.get(position));
-                        ((MainActivity) mContext).refreshBasket();
-                    } else if (qty < myQuantities.get(position)) {
-                        //todo
-                    } else {
-                        UserManager.getInstance(mContext).addInBasket(myProducts.get(position), qty);
-                        ((MainActivity) mContext).refreshBasket();
-                    }*/
-
-                    /*String qty = "";
-
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_0:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_1:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_2:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_3:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_4:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_5:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_6:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_7:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_8:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_9:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_DEL:
-                            qty = wrapper.getArticleQty().getText().toString();
-                            break;
-                        case KeyEvent.KEYCODE_ENTER:
-                            System.out.println("DEBUG QTY 1 .:" + qty + ":.");
-                            break;
-                    }
-
-                }
-                return false;
-            }
-        });
-
-
-        /*
-        // Spinner Quantity
-        List<String> list = new ArrayList<String>();
-        for (int i = 1; i <= 10; i++) {
-            list.add(i+"");
-        }
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        wrapper.getArticleQuantitySpinner().setAdapter(dataAdapter);
-        wrapper.getArticleQuantitySpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int spinnerPosition, long id) {
-                if (myQuantities.get(position) != spinnerPosition) {
-                    UserManager.getInstance(mContext).getUser().getQuantities().set(position, spinnerPosition);
-                    updateListView();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        wrapper.getArticleQuantitySpinner().setSelection(myQuantities.get(position));*/
 
         return row;
     }

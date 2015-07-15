@@ -29,9 +29,6 @@ public class FragmentMesCommandes extends Fragment {
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            System.out.println("AAAA " + intent.getAction());
-
             if (intent.getAction().equals("OK ORDERS")) {
                 init();
             } else if (intent.getAction().equals("KO ORDERS")) {
@@ -42,7 +39,6 @@ public class FragmentMesCommandes extends Fragment {
             }
         }
     };
-
 
     public FragmentMesCommandes() {
     }

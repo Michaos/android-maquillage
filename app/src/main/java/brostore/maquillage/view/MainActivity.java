@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -255,7 +256,11 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this, R.style.CustomDialogTheme);
         dialog.setContentView(R.layout.popup_layout);
 
-        ((EditText) dialog.findViewById(R.id.article_qty)).setText(qty + "");
+        EditText et = ((EditText) dialog.findViewById(R.id.article_qty));
+
+        et.setText(qty + "");
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
 
         dialog.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
             @Override

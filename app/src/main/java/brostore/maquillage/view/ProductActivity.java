@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.Html;
@@ -16,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import brostore.maquillage.R;
 import brostore.maquillage.dao.Product;
+import brostore.maquillage.manager.FluxManager;
 import brostore.maquillage.manager.ProductManager;
 import brostore.maquillage.manager.UserManager;
 
@@ -29,6 +34,9 @@ public class ProductActivity extends Activity {
     private int quantityAvailable;
 
     private boolean isFavorite;
+
+    private CallbackManager callbackManager;
+    private ShareDialog shareDialog;
 
     private BroadcastReceiver broadCastReceiver = new BroadcastReceiver() {
         @Override
@@ -67,7 +75,36 @@ public class ProductActivity extends Activity {
 
     }
 
+    private void shareFacebook(){
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+
+        String url = FluxManager.URL_SHARE.replace("__ID__", myProduct.getId()+"").replace("__LINK_REWRITE__", myProduct.getLinkRewrite());
+
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Maquillage.fr")
+                    .setContentDescription("")
+                    .setContentUrl(Uri.parse(url))
+                    .build();
+            shareDialog.show(linkContent);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void init() {
+
+        findViewById(R.id.article_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareFacebook();
+            }
+        });
 
         if (myProduct.getBitmapImage() == null) {
             ((ImageView) findViewById(R.id.article_image)).setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.maquillage));

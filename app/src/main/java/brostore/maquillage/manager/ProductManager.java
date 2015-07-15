@@ -172,7 +172,7 @@ public class ProductManager {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String infoProduct = product.getName() + "!" + product.getImageId() + "!" + product.getPrice() + "!" + product.getReducedPrice() + "!" + product.getDescription() + "!" + product.getQuantityId() + "!" + product.getQuantity();
+                String infoProduct = product.getName() + "!" + product.getImageId() + "!" + product.getPrice() + "!" + product.getReducedPrice() + "!" + product.getDescription() + "!" + product.getQuantityId() + "!" + product.getQuantity() + "!" + product.getLinkRewrite();
                 SharedPreferences preferences = mContext.getSharedPreferences(favoris, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editeur = preferences.edit();
                 editeur.putString(product.getId() + "", infoProduct);
@@ -223,8 +223,9 @@ public class ProductManager {
             String description = results[4];
             String quantityId = results[5];
             String quantity = results[6];
+            String linkRewrite = results[7];
 
-            listProductsFavoris.add(new Product(entry.getKey(), name, imageId, price, reducedPrice, description, quantityId, quantity));
+            listProductsFavoris.add(new Product(entry.getKey(), name, imageId, price, reducedPrice, description, quantityId, quantity, linkRewrite));
         }
     }
 

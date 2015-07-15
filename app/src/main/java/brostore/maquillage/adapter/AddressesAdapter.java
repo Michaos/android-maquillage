@@ -23,9 +23,6 @@ public class AddressesAdapter extends BaseAdapter {
     private AddressWrapper wrapper;
 
     public AddressesAdapter(Context context, ArrayList<Address> listAddresses) {
-
-        System.out.println("ADDRESS :: " + listAddresses.size());
-
         inflater = LayoutInflater.from(context);
         mContext = context;
         myAddresses = listAddresses;
@@ -58,8 +55,6 @@ public class AddressesAdapter extends BaseAdapter {
         }
 
         Address myAddress = myAddresses.get(position);
-
-        System.out.println(myAddress.toString());
 
         wrapper.getAlias().setText(myAddress.getAlias());
         wrapper.getSociete().setText(myAddress.getCompany());

@@ -18,6 +18,8 @@ public class Product implements Parcelable {
     private String imageId;
     private Bitmap bitmapImage;
 
+    private String linkRewrite;
+
     public Product() {
 
     }
@@ -28,6 +30,7 @@ public class Product implements Parcelable {
         name = jsonProduct.optJSONObject("product").optString("name");
         description = jsonProduct.optJSONObject("product").optString("description");
         quantityId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("stock_availables").optJSONObject(0).optString("id");
+        linkRewrite = jsonProduct.optJSONObject("product").optString("link_rewrite");
         try {
             imageId = jsonProduct.optJSONObject("product").optJSONObject("associations").optJSONArray("images").optJSONObject(0).optString("id");
         } catch (NullPointerException e) {
@@ -35,7 +38,7 @@ public class Product implements Parcelable {
         }
     }
 
-    public Product(String id, String name, String imageId, String price, String reducedPrice, String description, String quantityId, String quantity) {
+    public Product(String id, String name, String imageId, String price, String reducedPrice, String description, String quantityId, String quantity, String linkRewrite) {
         this.id = Integer.parseInt(id);
         this.name = name;
         this.imageId = imageId;
@@ -44,6 +47,7 @@ public class Product implements Parcelable {
         this.description = description;
         this.quantityId = quantityId;
         this.quantity = quantity;
+        this.linkRewrite = linkRewrite;
     }
 
     protected Product(Parcel in) {
@@ -56,6 +60,7 @@ public class Product implements Parcelable {
         description = in.readString();
         imageId = in.readString();
         bitmapImage = in.readParcelable(Bitmap.class.getClassLoader());
+        linkRewrite = in.readString();
     }
 
     public static final Creator<Product> CREATOR = new Creator<Product>() {
@@ -147,6 +152,14 @@ public class Product implements Parcelable {
         return 0;
     }
 
+    public String getLinkRewrite() {
+        return linkRewrite;
+    }
+
+    public void setLinkRewrite(String linkRewrite) {
+        this.linkRewrite = linkRewrite;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
@@ -158,5 +171,6 @@ public class Product implements Parcelable {
         dest.writeString(description);
         dest.writeString(imageId);
         dest.writeParcelable(bitmapImage, flags);
+        dest.writeString(linkRewrite);
     }
 }

@@ -80,7 +80,6 @@ public class UserManager {
     }
 
     public void minusInBasket(Product p, int quantity) {
-        //todo
 
         int has = getUser().hasAlreadyThatProduct(p);
 
