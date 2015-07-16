@@ -25,6 +25,7 @@ import android.widget.TextView;
 import brostore.maquillage.R;
 import brostore.maquillage.adapter.BasketAdapterRight;
 import brostore.maquillage.adapter.MenuAdapterLeft;
+import brostore.maquillage.manager.AddressManager;
 import brostore.maquillage.manager.MenuManager;
 import brostore.maquillage.manager.UserManager;
 import brostore.maquillage.utils.Utils;
@@ -168,9 +169,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
             if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getItemsSousMenu() == null) {
                 if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getTitre().contains("Compte")) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
-                    ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
-                    getSupportActionBar().setTitle("COMPTE");
+                    goToAccount();
                 }
             }
             return false;
@@ -209,7 +208,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.validate_basket).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PayPalActivity.class));
+                // if the user is connected
+                if (UserManager.getInstance(mContext).getUser().getId() != 0) {
+                    startActivity(new Intent(getApplicationContext(), DeliveryActivity.class));
+                }
+                else {
+                    goToAccount();
+                }
             }
         });
 
@@ -289,6 +294,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    protected void goToAccount() {
+        FragmentCompte fc = new FragmentCompte();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fc).commit();
+        ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
+        getSupportActionBar().setTitle("COMPTE");
     }
 
     @Override
