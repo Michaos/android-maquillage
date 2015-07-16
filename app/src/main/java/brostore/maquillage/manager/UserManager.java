@@ -142,7 +142,7 @@ public class UserManager {
 
             Object o = ApiManager.callAPI(FluxManager.URL_CONNECT.replace("__EMAIL__", user.getEmail()).replace("__ENCRYPTED_MDP__", user.getEncryptedMdp()));
 
-            if (o == null) {
+            if (o instanceof JSONArray || o == null) {
                 return false;
             } else {
                 id = ((JSONObject) o).optJSONArray("customers").optJSONObject(0).optInt("id");
