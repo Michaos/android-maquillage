@@ -55,7 +55,7 @@ public class FragmentFormAdresse extends Fragment {
         return rootView;
     }
 
-    private void init(){
+    private void init() {
 
         ((EditText) rootView.findViewById(R.id.firstName)).setText(UserManager.getInstance(getActivity()).getUser().getFirstName());
         ((EditText) rootView.findViewById(R.id.lastName)).setText(UserManager.getInstance(getActivity()).getUser().getLastName());
