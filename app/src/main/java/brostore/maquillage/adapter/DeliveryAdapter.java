@@ -57,6 +57,9 @@ public class DeliveryAdapter extends BaseAdapter {
         wrapper.getPostalCode().setText(address.getPostcode());
         wrapper.getCity().setText(address.getCity());
 
+
+
+
         return row;
     }
 

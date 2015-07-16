@@ -2,10 +2,12 @@ package brostore.maquillage.dao;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Michaos on 11/07/2015.
  */
-public class Address {
+public class Address implements Serializable {
 
     private int id;
     private String alias;

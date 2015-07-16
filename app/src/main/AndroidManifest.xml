@@ -41,6 +41,10 @@
             android:name=".view.DeliveryActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.ValidateActivity"
+            android:screenOrientation="portrait" />
+
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
