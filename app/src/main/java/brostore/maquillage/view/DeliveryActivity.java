@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import brostore.maquillage.R;
 import brostore.maquillage.adapter.DeliveryAdapter;
 import brostore.maquillage.dao.Address;
 import brostore.maquillage.manager.AddressManager;
+import brostore.maquillage.manager.ProductManager;
 
 /**
  * Created by clairecoloma on 13/07/15.
@@ -64,6 +66,16 @@ public class DeliveryActivity extends Activity {
         ArrayList<Address> listAddresses =  AddressManager.getInstance(this).getListAddresses();
         deliveryAdapter = new DeliveryAdapter(this, listAddresses);
         addressList.setAdapter(deliveryAdapter);
+
+        addressList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ValidateActivity.class);
+                intent.putExtra("address", AddressManager.getInstance(mContext).getListAddresses().get(position));
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

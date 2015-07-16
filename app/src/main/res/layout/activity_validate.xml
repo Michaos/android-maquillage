@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/validate_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Validation - Étape 2 / 3"
+        android:textColor="@color/rose"
+        android:textSize="15dp" />
+
+
+    <ListView
+        android:id="@+id/validate_products"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_total"
+        android:layout_below="@+id/validate_title" />
+
+    <TextView
+        android:id="@+id/validate_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_address"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="Total : "
+        android:textSize="18dp"/>
+
+
+    <TextView
+        android:id="@+id/validate_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_address_alias"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Adresse de livraison : " />
+
+    <TextView
+        android:id="@+id/validate_address_alias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_address_delivery"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:text="Bureau"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/validate_address_delivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_postal_code"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:text="116 avenue Charles de Gaulle" />
+
+    <TextView
+        android:id="@+id/validate_postal_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/validate_order"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:text="75000" />
+
+    <TextView
+        android:id="@+id/validate_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/validate_postal_code"
+        android:layout_alignTop="@+id/validate_postal_code"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/validate_postal_code" />
+
+    <TextView
+        android:id="@+id/validate_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Valider la commande"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

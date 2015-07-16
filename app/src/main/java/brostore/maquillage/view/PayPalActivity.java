@@ -217,62 +217,6 @@ public class PayPalActivity extends Activity {
                         TAG,
                         "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
             }
-        } else if (requestCode == REQUEST_CODE_FUTURE_PAYMENT) {
-            if (resultCode == Activity.RESULT_OK) {
-                PayPalAuthorization auth =
-                        data.getParcelableExtra(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION);
-                if (auth != null) {
-                    try {
-                        Log.i("FuturePaymentExample", auth.toJSONObject().toString(4));
-
-                        String authorization_code = auth.getAuthorizationCode();
-                        Log.i("FuturePaymentExample", authorization_code);
-
-                        sendAuthorizationToServer(auth);
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Future Payment code received from PayPal", Toast.LENGTH_LONG)
-                                .show();
-
-                    } catch (JSONException e) {
-                        Log.e("FuturePaymentExample", "an extremely unlikely failure occurred: ", e);
-                    }
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.i("FuturePaymentExample", "The user canceled.");
-            } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.i(
-                        "FuturePaymentExample",
-                        "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
-            }
-        } else if (requestCode == REQUEST_CODE_PROFILE_SHARING) {
-            if (resultCode == Activity.RESULT_OK) {
-                PayPalAuthorization auth =
-                        data.getParcelableExtra(PayPalProfileSharingActivity.EXTRA_RESULT_AUTHORIZATION);
-                if (auth != null) {
-                    try {
-                        Log.i("ProfileSharingExample", auth.toJSONObject().toString(4));
-
-                        String authorization_code = auth.getAuthorizationCode();
-                        Log.i("ProfileSharingExample", authorization_code);
-
-                        sendAuthorizationToServer(auth);
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Profile Sharing code received from PayPal", Toast.LENGTH_LONG)
-                                .show();
-
-                    } catch (JSONException e) {
-                        Log.e("ProfileSharingExample", "an extremely unlikely failure occurred: ", e);
-                    }
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.i("ProfileSharingExample", "The user canceled.");
-            } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.i(
-                        "ProfileSharingExample",
-                        "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
-            }
         }
     }
 

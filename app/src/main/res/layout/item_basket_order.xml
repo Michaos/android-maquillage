@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/order_article_image"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/white"
+        android:scaleType="centerInside"
+        android:src="@drawable/maquillage" />
+
+    <brostore.maquillage.custom.FontTextView
+        android:id="@+id/order_article_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/order_article_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Rouge a levres BOURJOIS aaa Sweet levres BOURJOIS Sweet a levres BOURJOIS Sweet "
+        android:textColor="@color/black"
+        app:ttfNameTextView="ElleNovaC-Bold.otf" />
+
+    <TextView
+        android:id="@+id/order_total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/order_article_name"
+        android:layout_marginTop="15dp"
+        android:text="4,95€"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/order_article_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/order_total_price"
+        android:layout_alignTop="@+id/order_total_price"
+        android:layout_below="@+id/order_article_name"
+        android:layout_toRightOf="@+id/order_article_image"
+        android:gravity="center"
+        android:text="Qté : 1"
+        android:textColor="@color/black" />
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/order_article_image"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_bright" />
+</RelativeLayout>

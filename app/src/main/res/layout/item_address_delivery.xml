@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
 
     <brostore.maquillage.custom.FontTextView
         android:id="@+id/address_alias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="alias"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
         app:ttfNameTextView="ElleNovaC-Light.otf"/>
 
     <TextView
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/address_alias"
-        android:text="Adresse complète"
         android:layout_marginLeft="5dp"
+        android:text="Adresse complète"
         android:textColor="@color/black" />
 
     <TextView
@@ -31,17 +31,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/address_complete"
-        android:text="75000"
         android:layout_marginLeft="5dp"
+        android:text="75000"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/address_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/address_postal_code"
+        android:layout_alignTop="@+id/address_postal_code"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/address_postal_code"
-        android:layout_alignTop="@+id/address_postal_code"
-        android:layout_alignBottom="@+id/address_postal_code"
         android:textColor="@color/black" />
 </RelativeLayout>
