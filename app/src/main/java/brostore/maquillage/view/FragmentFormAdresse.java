@@ -33,7 +33,7 @@ public class FragmentFormAdresse extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("CREATE ADDRESS SUCCESS")) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentMesAdresses()).commit();
+                getActivity().getSupportFragmentManager().popBackStack();
             } else if (intent.getAction().equals("CREATE ADDRESS FAIL")) {
                 Toast.makeText(getActivity(), "Une erreur est survenue, réessayez plus tard.", Toast.LENGTH_LONG).show();
                 rootView.findViewById(R.id.scrollView).setVisibility(View.VISIBLE);
