@@ -98,14 +98,20 @@ public class ProductManager {
                 }
                 Product product = new Product(jsonProduct);
 
-                JSONObject jsonPrice = (JSONObject) ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));
+                Object o = ApiManager.callAPI(FluxManager.URL_SPECIFIC_PRICE.replace("__ID_PRODUCT__", product.getId() + ""));
 
-                if (jsonPrice != null) {
-                    Double reduction = (Double.parseDouble(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction")));
-                    product.calculReducedPrice(reduction);
-                } else {
-                    product.calculReducedPrice(0.0);
+                if (o instanceof JSONObject) {
+
+                    JSONObject jsonPrice = (JSONObject) o;
+
+                    if (jsonPrice != null) {
+                        Double reduction = (Double.parseDouble(jsonPrice.optJSONArray("specific_prices").optJSONObject(0).optString("reduction")));
+                        product.calculReducedPrice(reduction);
+                    } else {
+                        product.calculReducedPrice(0.0);
+                    }
                 }
+
                 productsListTemp.add(product);
             }
 
