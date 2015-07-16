@@ -74,31 +74,31 @@ public class FragmentFormAdresse extends Fragment {
 
                     Address newAddress = new Address();
 
-                    if (((RadioButton) getView().findViewById(R.id.france)).isChecked()) {
+                    if (((RadioButton) rootView.findViewById(R.id.france)).isChecked()) {
                         newAddress.setIdCountry("8");
                     }
-                    if (((RadioButton) getView().findViewById(R.id.belgium)).isChecked()) {
+                    if (((RadioButton) rootView.findViewById(R.id.belgium)).isChecked()) {
                         newAddress.setIdCountry("3");
                     }
 
-                    newAddress.setAlias(((EditText) getView().findViewById(R.id.alias)).getText().toString());
-                    newAddress.setLastName(((EditText) getView().findViewById(R.id.lastName)).getText().toString());
-                    newAddress.setFirstName(((EditText) getView().findViewById(R.id.firstName)).getText().toString());
+                    newAddress.setAlias(((EditText) rootView.findViewById(R.id.alias)).getText().toString());
+                    newAddress.setLastName(((EditText) rootView.findViewById(R.id.lastName)).getText().toString());
+                    newAddress.setFirstName(((EditText) rootView.findViewById(R.id.firstName)).getText().toString());
 
-                    newAddress.setCompany(((EditText) getView().findViewById(R.id.company)).getText().toString());
-                    newAddress.setVatNumber(((EditText) getView().findViewById(R.id.vat)).getText().toString());
+                    newAddress.setCompany(((EditText) rootView.findViewById(R.id.company)).getText().toString());
+                    newAddress.setVatNumber(((EditText) rootView.findViewById(R.id.vat)).getText().toString());
 
-                    newAddress.setAddress1(((EditText) getView().findViewById(R.id.address)).getText().toString());
-                    newAddress.setAddress2(((EditText) getView().findViewById(R.id.address2)).getText().toString());
+                    newAddress.setAddress1(((EditText) rootView.findViewById(R.id.address)).getText().toString());
+                    newAddress.setAddress2(((EditText) rootView.findViewById(R.id.address2)).getText().toString());
 
-                    newAddress.setPostcode(((EditText) getView().findViewById(R.id.cp)).getText().toString());
-                    newAddress.setCity(((EditText) getView().findViewById(R.id.city)).getText().toString());
+                    newAddress.setPostcode(((EditText) rootView.findViewById(R.id.cp)).getText().toString());
+                    newAddress.setCity(((EditText) rootView.findViewById(R.id.city)).getText().toString());
 
-                    newAddress.setPhone(((EditText) getView().findViewById(R.id.tel_fixe)).getText().toString());
-                    newAddress.setPhoneMobile(((EditText) getView().findViewById(R.id.tel_portable)).getText().toString());
+                    newAddress.setPhone(((EditText) rootView.findViewById(R.id.tel_fixe)).getText().toString());
+                    newAddress.setPhoneMobile(((EditText) rootView.findViewById(R.id.tel_portable)).getText().toString());
 
-                    newAddress.setPostcode(((EditText) getView().findViewById(R.id.cp)).getText().toString());
-                    newAddress.setOther(((EditText) getView().findViewById(R.id.infos)).getText().toString());
+                    newAddress.setPostcode(((EditText) rootView.findViewById(R.id.cp)).getText().toString());
+                    newAddress.setOther(((EditText) rootView.findViewById(R.id.infos)).getText().toString());
 
                     AddressManager.getInstance(getActivity()).createAddress(newAddress);
 
@@ -113,31 +113,31 @@ public class FragmentFormAdresse extends Fragment {
     }
 
     private boolean checkForm() {
-        if (((EditText) getView().findViewById(R.id.alias)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.alias)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.alias)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.firstName)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.firstName)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.firstName)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.lastName)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.lastName)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.lastName)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.address)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.address)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.address)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.cp)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.cp)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.cp)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.city)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.city)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.city)).setError("Veuillez renseignez ce champ");
             return false;
         }
-        if (((EditText) getView().findViewById(R.id.tel_fixe)).getText().toString().trim().equalsIgnoreCase("") && ((EditText) getView().findViewById(R.id.tel_portable)).getText().toString().trim().equalsIgnoreCase("")) {
+        if (((EditText) rootView.findViewById(R.id.tel_fixe)).getText().toString().trim().equalsIgnoreCase("") && ((EditText) rootView.findViewById(R.id.tel_portable)).getText().toString().trim().equalsIgnoreCase("")) {
             ((EditText) rootView.findViewById(R.id.tel_fixe)).setError("Veuillez renseignez au moins un numéro de téléphone");
             ((EditText) rootView.findViewById(R.id.tel_portable)).setError("Veuillez renseignez au moins un numéro de téléphone");
             return false;

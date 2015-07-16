@@ -59,7 +59,6 @@ public class AddressesAdapter extends BaseAdapter {
         wrapper.getAlias().setText(myAddress.getAlias());
         wrapper.getLastName().setText(myAddress.getLastName());
         wrapper.getFirstName().setText(myAddress.getFirstName());
-        wrapper.getAlias().setText(myAddress.getAlias());
         wrapper.getSociete().setText(myAddress.getCompany());
         wrapper.getTva().setText(myAddress.getVatNumber());
         wrapper.getAdresse().setText(myAddress.getAddress1());
@@ -70,6 +69,25 @@ public class AddressesAdapter extends BaseAdapter {
         wrapper.getTelfixe().setText(myAddress.getPhone());
         wrapper.getTelport().setText(myAddress.getPhoneMobile());
         wrapper.getInfos().setText(myAddress.getOther());
+
+        if(myAddress.getCompany().equals("")){
+            wrapper.getSociete().setVisibility(View.GONE);
+        }
+        if(myAddress.getVatNumber().equals("")){
+            wrapper.getTva().setVisibility(View.GONE);
+        }
+        if(myAddress.getAddress2().equals("")){
+            wrapper.getAdresse2().setVisibility(View.GONE);
+        }
+        if(myAddress.getPhone().equals("")){
+            wrapper.getTelfixe().setVisibility(View.GONE);
+        }
+        if(myAddress.getPhoneMobile().equals("")){
+            wrapper.getTelport().setVisibility(View.GONE);
+        }
+        if(myAddress.getOther().equals("")){
+            wrapper.getInfos().setVisibility(View.GONE);
+        }
 
         return row;
     }
