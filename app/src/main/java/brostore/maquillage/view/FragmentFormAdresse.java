@@ -48,7 +48,7 @@ public class FragmentFormAdresse extends Fragment {
 
         IntentFilter filter = new IntentFilter("CREATE ADDRESS SUCCESS");
         filter.addAction("CREATE ADDRESS FAIL");
-        getActivity().registerReceiver(broadCastReceiver, filter);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadCastReceiver, filter);
 
         init();
 

@@ -108,12 +108,9 @@ public class FragmentCompte extends Fragment {
 
                     rootView.findViewById(R.id.loadinglayout).setVisibility(View.VISIBLE);
                     ((TextView) rootView.findViewById(R.id.chargement)).setText(R.string.verifmail);
-
                 }
             }
         });
-
-
     }
 
     private boolean checkForm() {
