@@ -56,6 +56,13 @@ public class FragmentMesAdresses extends Fragment {
 
         AddressManager.getInstance(getActivity()).getUserAddresses();
 
+        rootView.findViewById(R.id.add_addresse).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.content_frame, new FragmentFormAdresse()).commit();
+            }
+        });
+
         return rootView;
     }
 

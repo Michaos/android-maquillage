@@ -23,9 +23,11 @@ public class FluxManager {
     public static final String URL_GET_BLANK_USER = "http://www.maquillage.fr/maquillage-marque/api/customers/?schema=blank";
 
     public static final String URL_POST_USER = "http://www.maquillage.fr/maquillage-marque/api/customers";
+    public static final String URL_POST_ADDRESS = "http://www.maquillage.fr/maquillage-marque/api/addresses";
 
     public static final String URL_GET_USER_ADDRESSES = "http://www.maquillage.fr/maquillage-marque/api/addresses/?filter[id_customer]=__ID__&output_format=JSON";
     public static final String URL_GET_ADDRESS = "http://www.maquillage.fr/maquillage-marque/api/addresses/__ID__&output_format=JSON";
+    public static final String URL_GET_BLANK_ADDRESS = "http://www.maquillage.fr/maquillage-marque/api/addresses/?schema=blank";
 
     public static final String URL_GET_COUNTRY = "http://www.maquillage.fr/maquillage-marque/api/countries/__ID__&output_format=JSON";
 

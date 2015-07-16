@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -169,8 +168,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
             if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getItemsSousMenu() == null) {
                 if (MenuManager.getInstance(getApplicationContext()).getItemsMenuLeft().get(groupPosition).getTitre().contains("Compte")) {
-                    FragmentCompte fc = new FragmentCompte();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fc).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentCompte()).commit();
                     ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
                     getSupportActionBar().setTitle("COMPTE");
                 }

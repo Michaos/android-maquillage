@@ -12,6 +12,8 @@ public class AddressWrapper {
 
     private View baseView;
     private TextView alias;
+    private TextView firstname;
+    private TextView lastname;
     private TextView societe;
     private TextView tva;
     private TextView adresse;
@@ -36,6 +38,20 @@ public class AddressWrapper {
             alias = (TextView) baseView.findViewById(R.id.alias);
         }
         return alias;
+    }
+
+    public TextView getLastName() {
+        if (lastname == null) {
+            lastname = (TextView) baseView.findViewById(R.id.lastname);
+        }
+        return lastname;
+    }
+
+    public TextView getFirstName() {
+        if (firstname == null) {
+            firstname = (TextView) baseView.findViewById(R.id.firstname);
+        }
+        return firstname;
     }
 
     public TextView getSociete() {

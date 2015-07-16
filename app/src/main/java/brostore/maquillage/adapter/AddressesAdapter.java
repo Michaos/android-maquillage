@@ -57,6 +57,9 @@ public class AddressesAdapter extends BaseAdapter {
         Address myAddress = myAddresses.get(position);
 
         wrapper.getAlias().setText(myAddress.getAlias());
+        wrapper.getLastName().setText(myAddress.getLastName());
+        wrapper.getFirstName().setText(myAddress.getFirstName());
+        wrapper.getAlias().setText(myAddress.getAlias());
         wrapper.getSociete().setText(myAddress.getCompany());
         wrapper.getTva().setText(myAddress.getVatNumber());
         wrapper.getAdresse().setText(myAddress.getAddress1());

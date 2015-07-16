@@ -9,26 +9,35 @@ public class Address {
 
     private int id;
     private String alias;
+    private String lastName;
+    private String firstName;
     private String company;
     private String vatNumber;
     private String address1;
     private String address2;
     private String postcode;
     private String city;
+    private String idCountry;
     private String country;
     private String other;
     private String phone;
     private String phoneMobile;
 
+    public Address(){
+    }
+
     public Address(JSONObject jsonObject) {
         id = jsonObject.optJSONObject("address").optInt("id");
         alias = jsonObject.optJSONObject("address").optString("alias");
+        lastName = jsonObject.optJSONObject("address").optString("lastName");
+        firstName = jsonObject.optJSONObject("address").optString("firstName");
         company = jsonObject.optJSONObject("address").optString("company");
         vatNumber = jsonObject.optJSONObject("address").optString("vatNumber");
         address1 = jsonObject.optJSONObject("address").optString("address1");
         address2 = jsonObject.optJSONObject("address").optString("address2");
         postcode = jsonObject.optJSONObject("address").optString("postcode");
         city = jsonObject.optJSONObject("address").optString("city");
+        idCountry = jsonObject.optJSONObject("address").optString("id_country");
         other = jsonObject.optJSONObject("address").optString("other");
         phone = jsonObject.optJSONObject("address").optString("phone");
         phoneMobile = jsonObject.optJSONObject("address").optString("phoneMobile");
@@ -48,6 +57,22 @@ public class Address {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getCompany() {
@@ -120,6 +145,14 @@ public class Address {
 
     public void setPhoneMobile(String phoneMobile) {
         this.phoneMobile = phoneMobile;
+    }
+
+    public String getIdCountry() {
+        return idCountry;
+    }
+
+    public void setIdCountry(String idCountry) {
+        this.idCountry = idCountry;
     }
 
     public String getCountry() {

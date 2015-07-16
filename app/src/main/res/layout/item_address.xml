@@ -13,6 +13,20 @@
         android:textColor="@color/black" />
 
     <TextView
+        android:id="@+id/lastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="lastname"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="firstname"
+        android:textColor="@color/black" />
+
+    <TextView
         android:id="@+id/societe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
